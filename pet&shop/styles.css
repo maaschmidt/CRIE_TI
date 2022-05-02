@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 body{
   font-family: 'Open Sans', sans-serif;
+  margin: 0;
 }
 .brand{
   width: 250px;
@@ -11,7 +12,6 @@ header {
   display: flex;
   align-items: center;
   position: fixed;
-  padding: 0 50px;
   top: 0;
   left: 0px;
   right: 0px;
@@ -74,7 +74,7 @@ header {
 .column {
   display:inline-block;
   padding: 30px;
-  width: 15%;
+  width: 18%;
   height: 250px;
   vertical-align: middle;
 }
@@ -103,20 +103,19 @@ header {
 }
 .service-description{
   text-align: center;
-  width: 240px;
+  width: 100%;
   color: #858585;
 }
 #description {
   width: 100%;
-  height: 350px;
+  height: 250px;
   background-color: #07f;
 }
 .desc-logo{
-  margin-top: 60px ;
+  width: 200px;
+  height: 60px;
   margin-left: 100px;
-  position: top;
-  width: 18%;
-  height: 80px;
+  margin-top: 20px;
 }
 .desc-text{
   color: #fff;
@@ -132,6 +131,7 @@ header {
   margin-left: 20px;
   width: 10em;
   height: 20em;
+  border: 1px solid #fff;
 }
 .product-column a{
   color: inherit;
@@ -290,6 +290,9 @@ footer{
 #about{
   margin-bottom: 5em;
 }
+.img-about{
+  display: inline-block;
+}
 .image-about{
   display: inline-block;
   width: 350px;
@@ -352,50 +355,55 @@ footer{
 #products{
   margin-bottom: 5em;
 }
-.shower{
-  background-image: url(Imagens/Serviços/bath-and-groom.jpg);
+#shower{
   height: 350px;
-  background-size: 500px 350px;
-  background-position: left;
-  background-repeat: no-repeat;
+}
+.shower-img{
+  object-fit: cover;
+  width: 500px;
+  height: 350px;
 }
 .desc-shower{
   display: inline-block;
-  width: 600px;
+  width: 650px;
   vertical-align: top;
-  margin: 0 0 0 550px;
+  margin: 0 0 0 30px;
 }
 .desc-shower h3{ 
-  color: #f07;
+  color: #ff0077;
   font-size: 24px;
   font-weight: 400
 }
-.desc-shower span{ 
-  color: #382c32;
+.desc-shower p:first-of-type{ 
+  color: #353535;
   font-size: 18px;
-  font-weight: 400;
-  line-height: 25px;
+  font-weight: 500;
+  line-height: 30px;
 }
 .desc-shower p{ 
-  color: #382c32;
+  color: #353535;
   opacity: 80%;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 25px;
+  width: 600px;
 }
-.medic{
+#medic{
+  display: flex;
   background-color: #f07;
-  background-image: url(Imagens/Serviços/medical-center.jpg);
   height: 350px;
-  background-size: 500px 350px;
-  background-position: right;
-  background-repeat: no-repeat;
+}
+.medic-img{
+  margin-left: auto;  
+  object-fit: cover;
+  width: 500px;
+  height: 350px;
 }
 .desc-medic{
   display: inline-block;
   width: 650px;
   vertical-align: top;
-  margin: 10px 0 0 100px;
+  margin: 10px 0 0 150px;
   text-align: right;
 }
 .desc-medic h3{ 
@@ -403,7 +411,7 @@ footer{
   font-size: 24px;
   font-weight: 400
 }
-.desc-medic span{ 
+.desc-medic p:first-of-type{ 
   color: #fff;
   font-size: 18px;
   font-weight: 500;
@@ -416,51 +424,56 @@ footer{
   font-weight: 100;
   line-height: 30px;
 }
-.drug{
-  background-color: #07f;
-  background-image: url(Imagens/Serviços/drugstore.jpg);
+#drug{
+  background-color: #0077ff;
   height: 350px;
-  background-size: 500px 350px;
-  background-position: left;
-  background-repeat: no-repeat;
+}
+.drug-img{
+  object-fit: cover;
+  width: 500px;
+  height: 350px;
 }
 .desc-drug{
   display: inline-block;
-  width: 600px;
+  width: 650px;
   vertical-align: top;
-  margin: 30px 0 0 550px;
+  margin: 30px 0 0 30px;
 }
 .desc-drug h3{ 
   color: #fff;
   font-size: 24px;
   font-weight: 400
 }
-.desc-drug span{ 
+.desc-drug p:first-of-type{ 
   color: #fff;
   font-size: 18px;
-  font-weight: 400;
-  line-height: 25px;
+  font-weight: 500;
+  line-height: 30px;
 }
 .desc-drug p{ 
   color: #fff;
   opacity: 80%;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 25px;
+  width: 600px;
 }
-.delivery{
+#delivery{
   background-color: #FF320D;
-  background-image: url(Imagens/Serviços/delivery.jpg);
+  display: flex;
   height: 350px;
-  background-size: 500px 700px;
-  background-position: right;
-  background-repeat: no-repeat;
+}
+.delivery-img{
+  margin-left: auto;  
+  object-fit: cover;
+  width: 500px;
+  height: 350px;
 }
 .desc-delivery{
   display: inline-block;
   width: 650px;
   vertical-align: top;
-  margin: 50px 0 0 100px;
+  margin: 50px 0 0 150px;
   text-align: right;
 }
 .desc-delivery h3{ 
@@ -468,7 +481,7 @@ footer{
   font-size: 24px;
   font-weight: 400
 }
-.desc-delivery span{ 
+.desc-delivery p:first-of-type{
   color: #fff;
   font-size: 18px;
   font-weight: 500;
@@ -481,51 +494,56 @@ footer{
   font-weight: 100;
   line-height: 30px;
 }
-.pick{
-  background-color: #C10DFF;
-  background-image: url(Imagens/Serviços/pick-up.jpg);
+#pick{
+  background-color: #c10dff;
   height: 350px;
-  background-size: 500px 350px;
-  background-position: left;
-  background-repeat: no-repeat;
+}
+.pick-img{
+  object-fit: cover;
+  width: 500px;
+  height: 350px;
 }
 .desc-pick{
   display: inline-block;
-  width: 600px;
+  width: 650px;
   vertical-align: top;
-  margin: 50px 0 0 550px;
+  margin: 50px 0 0 30px;
 }
 .desc-pick h3{ 
   color: #fff;
   font-size: 24px;
   font-weight: 400
 }
-.desc-pick span{ 
+.desc-pick p:first-of-type{ 
   color: #fff;
   font-size: 18px;
   font-weight: 400;
   line-height: 25px;
 }
-.desc-pick p{
+.desc-pick p{ 
   color: #fff;
   opacity: 80%;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 25px;
+  width: 600px;
 }
-.care{
+#care{
   background-color: #6cf515;
-  background-image: url(Imagens/Serviços/daycare.jpg);
+  display: flex;
   height: 350px;
-  background-size: 500px 350px;
-  background-position: right;
-  background-repeat: no-repeat;
+}
+.care-img{
+  margin-left: auto;
+  object-fit: cover;
+  width: 500px;
+  height: 350px;
 }
 .desc-care{
   display: inline-block;
   width: 650px;
   vertical-align: top;
-  margin: 30px 0 0 100px;
+  margin: 30px 0 0 150px;
   text-align: right;
 }
 .desc-care h3{ 
@@ -533,7 +551,7 @@ footer{
   font-size: 24px;
   font-weight: 400
 }
-.desc-care span{ 
+.desc-care p:first-of-type{ 
   color: #fff;
   font-size: 18px;
   font-weight: 500;
@@ -546,31 +564,31 @@ footer{
   font-weight: 100;
   line-height: 30px;
 }
-.hotel{
+#hotel{
   background-color: #353535;
   height: 350px;
 }
 .hotel-img{
+  object-fit: cover;
   width: 500px;
   height: 350px;
-  
 }
 .desc-hotel{
   display: inline-block;
   width: 650px;
   vertical-align: top;
-  margin: 50px 0 0 50px;
+  margin: 50px 0 0 30px;
 }
 .desc-hotel h3{ 
   color: #fff;
   font-size: 24px;
   font-weight: 400
 }
-.desc-hotel span{ 
+.desc-hotel p:first-of-type{ 
   color: #fff;
   font-size: 18px;
-  font-weight: 400;
-  line-height: 25px;
+  font-weight: 500;
+  line-height: 30px;
 }
 .desc-hotel p{ 
   color: #fff;
@@ -644,4 +662,554 @@ footer{
   text-decoration: none;
   font-size: 16px;
   font-weight: 600;
+}
+.address{
+  width: 450px;
+  display: inline-block;
+  color: #f07;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+}
+.infos iframe{
+  width: 400px;
+  height: 250px;
+}
+
+
+
+@media screen and (max-width :480px){
+  body{
+    margin: 0;
+  }
+  header {
+    width: 100%;
+    background-color: #fff;
+    display: block;
+    align-items: center;
+    position: fixed;
+    box-shadow: 0 0 40px #cecece;
+    z-index: 2;
+  }
+  .brand{
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .pages{
+    display: none;
+  }
+  .banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .banner img{
+    width: 100%;
+  }
+  #banner{
+    width: 100%;
+  }
+  #our-services{
+    margin-bottom: 50px;
+  }
+  .column {
+    display:inline-block;
+    font-size: 20px;
+    padding: 0px;
+    width: 80%;
+    height: 300px;
+    vertical-align: middle;
+  }
+  #description {
+    width: 100%;
+    height: 550px;
+    background-color: #07f;
+  }
+  .desc-logo{
+    width: 250px;
+    height: 70px;
+    margin: 50px 0 10px 50px;
+  }
+  .desc-text{
+    width: 100%;
+    color: #fff;
+    margin: 0 0 0 0;
+    font-size: large;
+    line-height: 30px;
+  }
+  .desc-text p{
+    margin: 0 50px 0 50px;
+  }
+  .product-name{
+    font-size: 14px;
+    font-weight: 500;
+    color: #858585;
+    width: auto;
+    margin-right: 0;
+    margin-left: 0;
+  }
+  footer{
+    background-color: #f07;
+    color: #fff;
+    width: 100%;
+    height: 420px;
+  }
+  .time-foot{
+    display: none;
+  }
+  .foot-logo {
+    display: flex;
+    width: 300px;
+    height: 150px;
+    margin: 0 auto 0 auto;
+    justify-content:flex-end;
+    box-sizing: border-box;
+  }
+  .foot-logo svg{
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin: 0 0 0 auto;
+  }
+  .row-foot{
+    width: 100%;
+    text-align: center;
+    margin: 0 auto 0 auto;
+    line-height: 25px;
+  }
+  .row-foot p{
+    display: none;
+  }
+  .contact-foot{
+    display: inline-block;
+    width: 330px;
+    margin-left: 0;
+  }
+  .contact-foot p{
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .contact-foot a{
+    color: inherit;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .desc-contact span{
+    font-weight: lighter;
+    width: 250px;
+  }
+  .follow-foot{
+    vertical-align: top;
+    width: 100%;
+    height: auto;
+    margin: 20px 0 30px 0;
+    text-align:unset;
+    font-weight: 600;
+  }
+  .social-icons{
+    width: 100%;
+    text-align: center;
+  }
+  .ico-social{
+    display: inline-block;
+    margin: 0 0 0 10px;
+    height: 30px;
+    width: 30px;
+  }
+  .ico-social a{
+    display: inline-block;
+    width: 30px;
+    vertical-align: top;
+    margin: 0 0 0 0;
+    fill: #fff;
+  }
+  .ico-social:hover{
+    transform: matrix3d(1.2,-0.26,0.00,0,0.26,1.164,0.00,0,0,0,1,0,0,0,0,1);
+    transform-origin: center center 0px; 
+    transition: all 0.5s ease 0s;
+    -webkit-transform-origin: center center 0px; 
+    -webkit-transition: all 0.5s ease 0s;  
+  }
+  .line-foot{
+    background-color: #ffd8ea;
+    opacity: 30%;
+    margin: 0 0 0 0;
+    width: 100%;
+    height: 1px;
+  }
+  .copy{
+    width: 350px;
+    margin: 10px auto 0 auto;
+    font-weight:lighter;
+    font-size: 14px;
+  }
+  .copy span{
+    font-weight:lighter;
+    font-size: 14px;
+    text-align: center;
+  }
+  .desc-about{
+    display: inline-block;
+    margin: 0 0 0 0;
+    width: 100%;
+    vertical-align: top;
+  }
+  .desc-about h2{
+    margin: 20px 50px 0 50px;
+  }
+  .desc-about p{
+    margin: 20px 50px 0 50px;
+  }
+  .image-about{
+    display: inline-block;
+    width: 100%;
+    height: 300px;
+    margin: 0 0 0 0;
+    object-fit: cover;
+  }
+  .img-about{
+    display:block;
+    height: 300px;
+    margin: 90px 0 50px 0;
+  }
+  .contact-button{
+    margin-left: 50px;
+  }
+  .products-title{
+    margin-left: 50px;
+  }
+  #shower{
+    height: auto;
+  }
+  .shower-img{
+    object-fit: cover;
+    width: 100%;
+    height: 350px;
+  }
+  .desc-shower{
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    margin: 10px 0 10px 0;
+  }
+  .desc-shower h3{ 
+    color: #ff0077;
+    font-size: 24px;
+    font-weight: 400;
+    width: auto;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .desc-shower  p:first-of-type{ 
+    color: #353535;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .desc-shower p{ 
+    color: #353535;
+    opacity: 80%;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 25px;
+    width: auto;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  #medic{
+    display: flex;
+    flex-wrap: wrap-reverse;
+    background-color: #f07;
+    height: auto;
+    flex-direction: row-reverse;
+  }
+  .medic-img{
+    display: block;
+    margin-left: auto;  
+    object-fit: cover;
+    width: 100%;
+    height: 350px;
+  }
+  .desc-medic{
+    display: block;
+    width: 100%;
+    margin: 10px 50px 0 50px;
+    text-align: left;
+  }
+  .desc-medic h3{ 
+    color: #fff;
+    font-size: 24px;
+    font-weight: 400;
+  }
+  .desc-medic p:first-of-type{ 
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 30px;
+  }
+  .desc-medic p{ 
+    color: #fff;
+    opacity: 80%;
+    font-size: 16px;
+    font-weight: 100;
+    line-height: 30px;
+  }
+  #drug{
+    background-color: #0077ff;
+    height: auto;
+  }
+  .drug-img{
+    object-fit: cover;
+    width: 100%;
+    height: 350px;
+  }
+  .desc-drug{
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    margin: 10px 0 10px 0;
+  }
+  .desc-drug h3{ 
+    color: #fff;
+    font-size: 24px;
+    font-weight: 400;
+    width: auto;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .desc-drug p:first-of-type{ 
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .desc-drug p{ 
+    color: #fff;
+    opacity: 80%;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 25px;
+    width: auto;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  #delivery{
+    background-color: #FF320D;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    height: auto;
+    flex-direction: row-reverse;
+  }
+  .delivery-img{
+    object-fit: cover;
+    width: 100%;
+    height: 350px;
+  }
+  .desc-delivery{
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    margin: 10px 50px 10px 50px;
+    text-align: left;
+  }
+  .desc-delivery h3{ 
+    color: #fff;
+    font-size: 24px;
+    font-weight: 400;
+  }
+  .desc-delivery p:first-of-type{ 
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 30px;
+  }
+  .desc-delivery p{ 
+    color: #fff;
+    opacity: 80%;
+    font-size: 16px;
+    font-weight: 100;
+    line-height: 30px;
+  }
+  #pick{
+    background-color: #c10dff;
+    height: auto;
+  }
+  .pick-img{
+    object-fit: cover;
+    width: 100%;
+    height: 350px;
+  }
+  .desc-pick{
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    margin: 10px 0 10px 0;
+  }
+  .desc-pick h3{ 
+    color: #fff;
+    font-size: 24px;
+    font-weight: 400;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .desc-pick p:first-of-type{ 
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .desc-pick p{ 
+    color: #fff;
+    opacity: 80%;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 25px;
+    width: auto;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  #care{
+    background-color: #6cf515;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    height: auto;
+    flex-direction: row-reverse;
+  }
+  .care-img{
+    margin-left: auto;
+    object-fit: cover;
+    width: 100%;
+    height: 350px;
+  }
+  .desc-care{
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    margin: 10px 0 10px 0;
+    text-align: left;
+  }
+  .desc-care h3{ 
+    color: #fff;
+    font-size: 24px;
+    font-weight: 400;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .desc-care p:first-of-type{ 
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .desc-care p{ 
+    color: #fff;
+    opacity: 80%;
+    font-size: 16px;
+    font-weight: 100;
+    line-height: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  #hotel{
+    background-color: #353535;
+    height: auto;
+  }
+  .hotel-img{
+    object-fit: cover;
+    width: 100%;
+    height: 350px;
+  }
+  .desc-hotel{
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    margin: 10px 0 10px 0;
+  }
+  .desc-hotel h3{ 
+    color: #fff;
+    font-size: 24px;
+    font-weight: 400;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .desc-hotel p:first-of-type{ 
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .desc-hotel p{ 
+    color: #fff;
+    opacity: 80%;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 25px;
+    width: auto;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .inputs{
+    display: block;
+    align-items: center;
+    margin: 0 50px 0 50px;
+    width: auto;
+  }
+  .input-name{
+    color: #858585;
+    font-size: 18px;
+  }
+  .form-item{
+    min-height: 50px;
+    margin-bottom: 30px;
+  }
+  #message.form-item{
+    height: 200px;
+  }
+  .send-button{
+    width: 10em;
+    font-size: 20px;
+    height: 50px;
+    margin-bottom: 50px;
+  }
+  .infos{
+    width: auto;
+    display: block;
+    margin: 0 0 0 0;
+  }
+    .infos span{
+    margin: 0 -50px 0 50px;
+  }
+  .infos a{
+    margin: 0 50px 0 50px;
+  }
+  .info-item{
+    font-size: 16px;
+    font-weight: 600;
+    color: #858585;
+    margin-left: 50px;
+  }
+  .infos iframe{
+    width: 100%;
+    height: 15em;
+  }
+  .address{
+    width: auto;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .address a{
+    margin-left: 0;
+  }
 }
