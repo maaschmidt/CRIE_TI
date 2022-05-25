@@ -1,0 +1,20 @@
+:root {
+  --color-black: #111;
+  --color-darken-grey: #242424;
+  --color-grey: #5b5b5b;
+  --color-light-grey: #f6f6f6;
+  --color-orange: #e39600;
+  --color-pink: #ea4c89;
+  --color-purple: #8f48eb;
+  --color-blue: #1da1f2;
+  --color-white: #fff;
+  --color-text:#363636;
+
+
+  --font-family-ibm: 'IBM Plex Mono';
+  --font-size-default: 16px;
+  --border-radius-default: 4px;
+
+  --color-primary:var(--color-light-grey);
+  --font-family-primary:var(--font-family-ibm);
+}

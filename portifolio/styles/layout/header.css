@@ -1,0 +1,68 @@
+.header {
+  margin: auto 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: var(--color-white);
+}
+.header__content{
+  display: flex;
+  height: 80px;
+  align-items: center;
+}
+.header__logo {
+  width: 3px;
+  margin-right: 64px;
+}
+.header__menu {
+  margin-left: auto;
+  display: inline-block;
+}
+.header__menu__item {
+  color: #6c6c6c;
+  text-decoration: none;
+  margin-left: 20px;
+  margin-right: auto;
+  vertical-align: middle;
+}
+.header__menu__item:last-child {
+  margin-right: 0;
+}
+.header__menu__item--active {
+  display: inline-flex;
+  color: var(--color-black);
+  vertical-align: middle;
+}
+.header__line{
+  margin: 0 -200px;
+  height: 3px;
+  background-color: var(--color-light-grey);
+}
+
+
+@media only screen and (max-width: 480px){
+  .header {
+    margin: 16px;
+    flex-wrap: wrap;
+  }
+  .header__logo {
+    width: 100px;
+  }
+  .header__menu {
+    order: 3;
+    margin: 40px -16px 0 -16px;
+    padding: 0 16px;
+    display: flex;
+    overflow: auto hidden;
+    scrollbar-width: none; /*Scrollbar fix for firefox browser*/
+}
+.header__menu::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+  .header__menu__item {
+    flex-shrink: 0;
+  }
+}
