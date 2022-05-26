@@ -1,0 +1,93 @@
+.contact{
+  margin-top: 150px;
+  margin-bottom: 80px;
+}
+.contact__title,
+.contact__desc{
+  width: 800px;
+  margin-left: 280px;
+}
+.contact__title{
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 57px;
+  margin-bottom: 20px;
+}
+.contact__desc{
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 30px;
+  color: var(--color-grey);
+  display: flex;
+  text-align: justify;
+}
+.contact__item{
+  margin-left: 280px;
+  margin-bottom: 60px;
+}
+.contact__fone,
+.contact__email{
+  display: block;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 30px;
+  color: #363636;
+  margin-top: 20px;
+  margin-right: 760px;
+  border-bottom: 3px solid var(--color-grey);
+}
+.contact__fone{
+  margin-right: 875px;
+}
+.input{
+  margin: 0 280px;
+  margin-top: 60px;
+  display: flex;
+}
+.input__item{
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+  color: var(--color-grey);
+}
+.form__item{
+  width: 390px;
+  height: 40px;
+  margin: 5px 20px 20px 0;
+  margin-right: 20px;
+  padding: 10px;
+  line-height: 22px;
+  font-family: var(--font-family-primary);
+  border: 1px solid #EAEAEA;
+  border-radius: 4px;
+}
+.form__item::placeholder {
+  font-family: var(--font-family-primary);
+  color: var(--color-grey);
+}
+.input__message{
+  display: flex;
+  width: 800px;
+  margin-left: 280px;
+  flex-direction: column;
+}
+.message{
+  padding: 10px;
+  line-height: 22px;
+  font-family: var(--font-family-primary);
+  border: 1px solid #EAEAEA;
+  border-radius: 4px;
+}
+.submit{
+  display: flex;
+  justify-content: center;
+}
+.send__button{
+  border: 1px solid #eaeaea;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+  margin-top: 20px;
+}

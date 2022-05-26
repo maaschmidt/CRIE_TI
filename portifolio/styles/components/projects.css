@@ -1,0 +1,31 @@
+.projects{
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+.project__title,
+.project__text,
+.project__subtitle{
+  width: 800px;
+  margin-bottom: 40px;
+  color: var(--color-text);
+  margin-left: 280px;
+}
+.project__title{
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 57px;
+}
+.project__text{
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 30px;
+  text-align: justify;
+}
+.project__subtitle{
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30px;
+}

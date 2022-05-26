@@ -1,11 +1,11 @@
 .home__projects{
-  margin: 60px 280px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  margin: 0 220px 0 280px;
 }
 .home__projects__content{
   width: 800px;
-  margin-bottom: 20px;
   display: -webkit-box;
 }
 .home__projects__title{
@@ -29,6 +29,7 @@
 .home__projects__content__text{
   font-size: 15px;
   display: inline-block;
+  text-align: justify;
   width: 640px;
   margin-left: 20px;
 }
@@ -51,4 +52,13 @@
   width: 35px;
   height: 40px;
   fill: var(--color-white);
+}
+.home__projects a{
+  margin-bottom: 20px;
+  border: 2px solid #fff;
+}
+.home__projects a:hover{
+  opacity: 70%;
+  border: 2px solid #7802ff;
+  border-radius: 5px;
 }
