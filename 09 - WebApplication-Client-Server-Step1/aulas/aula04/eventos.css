@@ -1,0 +1,12 @@
+.caixa {
+    background-color: rgb(77, 77, 77);
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    transition: 0.3 ease-in-out;
+}
+
+.caixa.onmouseover {
+    background-color: rgb(10, 10, 10);
+    transition: 0.3s ease-in-out;
+}

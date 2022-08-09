@@ -1,0 +1,25 @@
+body {
+    margin-left: 10px;
+}
+.caixa {
+    background-color: rgb(77, 77, 77);
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    transition: 0.3 ease-in-out;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    font-size: small;
+    line-height: 100px;
+}
+
+.caixa.mouseSobre {
+    background-color: rgb(10, 10, 10);
+    transition: 0.3s ease-in-out;
+}
+
+.caixa.clicado {
+    background-color: rgb(75, 2, 59);
+    transition: 0.3s ease-in-out;
+}

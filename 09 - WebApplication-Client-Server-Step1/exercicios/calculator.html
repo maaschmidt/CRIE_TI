@@ -12,35 +12,35 @@
     <h1>Calculadora</h1>
     <div class="main">
         <div class="display">
-            <h2 id="result">8+5</h2>
+            <h2 id="result"></h2>
         </div>
         <div class="buttons">
             <button id="clear">C</button>
             <button id="delete_single_num">⇦</button>
-            <button id="Normal_btn">/</button>
-            <button id="Normal_btn">*</button>
+            <button id="Normal_btn" onclick="operacao('/')">/</button>
+            <button id="Normal_btn" onclick="operacao('*')">*</button>
         </div>
         <div class="buttons">
-            <button id="Normal_btn">7</button>
-            <button id="Normal_btn">8</button>
-            <button id="Normal_btn">9</button>
-            <button id="Normal_btn">-</button>
+            <button id="Normal_btn" onclick="numeroDigitado(7)">7</button>
+            <button id="Normal_btn" onclick="numeroDigitado(8)">8</button>
+            <button id="Normal_btn" onclick="numeroDigitado(9)">9</button>
+            <button id="Normal_btn" onclick="operacao('-')">-</button>
         </div>
         <div class="buttons">
-            <button id="Normal_btn">4</button>
-            <button id="Normal_btn">5</button>
-            <button id="Normal_btn">6</button>
-            <button id="Normal_btn">+</button>
+            <button id="Normal_btn" onclick="numeroDigitado(4)">4</button>
+            <button id="Normal_btn" onclick="numeroDigitado(5)">5</button>
+            <button id="Normal_btn" onclick="numeroDigitado(6)">6</button>
+            <button id="Normal_btn" onclick="operacao('+')">+</button>
         </div>
         <div class="buttons">
-            <button id="Normal_btn">1</button>
-            <button id="Normal_btn">2</button>
-            <button id="Normal_btn">3</button>
-            <button id="Normal_btn">.</button>
+            <button id="Normal_btn" onclick="numeroDigitado(1)">1</button>
+            <button id="Normal_btn" onclick="numeroDigitado(2)">2</button>
+            <button id="Normal_btn" onclick="numeroDigitado(3)">3</button>
+            <!-- <button id="Normal_btn" onclick="ponto('.')">.</button> -->
         </div>
         <div class="buttons">
-            <button id="Normal_btn">0</button>
-            <button id="Normal_btn">00</button>
+            <button id="Normal_btn" onclick="numeroDigitado(0)">0</button>
+            <button id="Normal_btn" onclick="numeroDigitado(00)">00</button>
             <button id="equalTo">=</button>
         </div>
     </div> 

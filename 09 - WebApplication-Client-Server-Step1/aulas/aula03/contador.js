@@ -1,7 +1,7 @@
 function contar(){
-    var numero1 = Number(document.querySelector("#num1").value);
-    var numero2 = Number(document.querySelector("#num2").value);
-    var result = document.querySelector(".result");
+    const numero1 = Number(document.querySelector("#num1").value);
+    const numero2 = Number(document.querySelector("#num2").value);
+    const result = document.querySelector(".result");
     result.innerHTML = "";
 
     if (Number.isNaN(numero1)){
@@ -26,7 +26,7 @@ function contar(){
         }
     }
     function escreverLinha(numero){
-        var div = document.createElement("div");
+        const div = document.createElement("div");
         div.innerHTML = numero;
         result.appendChild(div);
     }
