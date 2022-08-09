@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador HTML</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        h1{
+            color: gray;
+        }
+        .result {
+            color: gray;
+        }
+        #num1, #num2 {
+            background-color: gray;
+            border: 0ch;
+        }
+        button{
+            background-color: gray;
+            border: 0cm;
+        }
+        </style>
+</head>
+<body>
+    <h1>Contador HTML</h1>
+    <label for="num1"><small>Insira o primeiro número</small></label>
+    <br/>
+    <input id="num1" placeholder="Número 1">
+    <br/><br/>
+    <label for="num2"><small>Insira o segundo número</small></label>
+    <br/>
+    <input id="num2" placeholder="Número 2">
+    <br/><br/>
+    <button onclick="desenharCidades()">Montar</button>
+    <div class="result"></div>
+ </body>
+ <script src="cidade.js"></script>
+</html>

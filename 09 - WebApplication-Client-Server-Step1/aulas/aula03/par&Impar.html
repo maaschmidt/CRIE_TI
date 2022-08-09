@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Par || Impar HTML</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        h1{
+            color: gray;
+        }
+        .result {
+            color: gray;
+        }
+        #numero {
+            background-color: gray;
+            border: 0ch;
+        }
+        button{
+            background-color: gray;
+            border: 0cm;
+        }
+        label{
+            color: gray;
+        }
+        </style>
+</head>
+<body>
+    <h1>Par || Impar HTML</h1>
+    <label for="numero"><small>Insira um número</small></label>
+    <br/>
+    <input id="numero" placeholder="Número">
+    <br/><br/>
+    <label for="option">Opção</label>
+    <select name="option" id="option">  
+        <option value="null">Selecione</option>
+        <option value="par">Par</option>
+        <option value="impar">Impar</option>
+    </select>
+    <br/><br/>
+    <button onclick="contar()">CONTAR</button>
+    <div class="result"></div>
+ </body>
+ <script src="par&Impar.js"></script>
+</html>
