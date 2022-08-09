@@ -1,0 +1,177 @@
+● Lista de cidades com estados: código da cidade, nome da cidade, nome do estado;
+  SELECT cidade.codigo,
+  	 cidade.nome,
+  	 estado.nome
+    FROM cidade,
+    	 estado
+   WHERE cidade.estado_uf = estado.uf;
+
+● Lista de filiais: código da filial, nome fantasia, razao_social, inscricao_estadual, nome da cidade, estado;
+  SELECT filial.codigo AS "Código Filial",
+  	 filial.inscricao_estadual AS "Inscrião Estadual",
+  	 cidade.nome AS "Cidade da Filial",
+  	 estado.nome AS "Estado da Filial",
+  	 empresa.nome_fantasia AS "Nome Fantasia da Empresa",
+  	 empresa.razao_social AS "Razão Social da Empresa"
+    FROM filial,
+    	 cidade,
+    	 estado,
+    	 empresa
+   WHERE filial.cidade_codigo = cidade.codigo
+     AND cidade.estado_uf = estado.uf;
+
+● Lista de funcionarios: código do funcionário, nome, email, cnpj filial, nome da cidade,
+nome do cargo;
+  SELECT funcionario.codigo AS "Código do Funcionário",
+  	 funcionario.nome AS "Nome",
+  	 funcionario.email AS "E-mail",
+  	 cidade.nome AS "Cidade",
+  	 cargo.nome AS "Cargo",
+  	 filial.cnpj AS "CNPJ da Filial"
+    FROM funcionario,
+    	 cidade,
+    	 cargo,
+    	 filial
+   WHERE funcionario.cidade_codigo = cidade.codigo
+     AND funcionario.cargo_codigo = cargo.codigo
+     AND funcionario.filial_codigo = filial.codigo;
+
+
+● Lista de produtos: código do produto, nome, número da prateleira, nome do setor,
+unidade_de_medida, nome do fornecedor, valor unitario
+  SELECT produto.codigo AS "Código Produto",
+       	 produto.nome AS "Nome Produto",
+ 	 prateleira.numero AS "nº prateleira",
+ 	 prateleira.setor AS "Setor Prateleira",
+ 	 unidade_medida.unidade_medida AS "Un Medida",
+ 	 fornecedor.nome AS "Nome do fornecedor",
+ 	 produto.valor_unitario AS "Valor Unitário"
+    FROM produto,
+   	 prateleira,
+   	 unidade_medida,
+   	 fornecedor
+   WHERE produto.prateleira_codigo = prateleira.codigo;
+   
+● Lista de vendas: Código do produto, nome, total valor (R$) vendido;
+ SELECT produto.codigo AS "Código",
+ 	produto.nome AS "Nome",
+ 	produto.valor_unitario * produto_venda.quantidade AS "Valor Total(R$)"
+   FROM produto,
+   	produto_venda,
+   	venda
+  WHERE produto_venda.produto_codigo = produto.codigo
+    AND produto_venda.venda_codigo = venda.codigo;
+ 	
+● Funcionário que mais vendeu (valor total em R$), apresentando o total e a
+quantidade de produtos vendidos;
+  SELECT funcionario.nome AS "Funcionário",
+	 money(sum(produto.valor_unitario * produto_venda.quantidade)) AS "Valor Total (R$)",
+	 sum(produto_venda.quantidade) AS "Quantidade"
+    FROM funcionario,
+    	 produto,
+    	 produto_venda,
+    	 venda
+   WHERE venda.funcionario_codigo = funcionario.codigo
+     AND produto_venda.produto_codigo = produto.codigo
+     AND produto_venda.venda_codigo = venda.codigo
+GROUP BY funcionario.nome
+ORDER BY sum(produto.valor_unitario * produto_venda.quantidade) DESC
+   LIMIT 1;
+	 
+● Filial que mais vendeu (valor total em R$), apresentando o cnpj, cidade, estado,
+valor total vendido (R$);
+  SELECT filial.cnpj AS "CNPJ Filial",
+  	 cidade.nome AS "Cidade",
+  	 estado.nome AS "Estado",
+  	 money(sum(produto.valor_unitario * produto_venda.quantidade)) AS "Valor Total (R$)"
+    FROM filial,
+	 cidade,
+	 estado,
+	 produto,
+	 produto_venda,
+	 funcionario,
+	 venda
+   WHERE produto_venda.venda_codigo = venda.codigo
+     AND produto_venda.produto_codigo = produto.codigo
+     AND venda.funcionario_codigo = funcionario.codigo
+     AND funcionario.filial_codigo = filial.codigo
+     AND filial.cidade_codigo = cidade.codigo
+     AND cidade.estado_uf = estado.uf
+GROUP BY filial.cnpj, 
+	 cidade.nome, 
+	 estado.nome
+ORDER BY sum(produto.valor_unitario * produto_venda.quantidade) DESC
+   LIMIT 1;
+
+● 5 fornecedores que mais tiveram produtos vendidos (quantidade): código do
+fornecedor, nome do fornecedor, cidade, estado, valor total vendido (R$), quantidade
+vendida;
+  SELECT fornecedor.codigo AS "Código do Fornecedor",
+  	 fornecedor.nome AS "Nome do Fornecedor",
+  	 cidade.nome AS "Cidade",
+  	 estado.nome AS "Estado",
+  	 sum(produto.valor_unitario * produto_venda.quantidade) AS "Valor Total (R$)",
+  	 sum(produto_venda.quantidade) AS "Quantidade Vendida"
+    FROM fornecedor,
+    	 cidade,
+    	 estado,
+    	 produto,
+    	 produto_venda,
+    	 venda
+   WHERE fornecedor.cidade_codigo = cidade.codigo
+     AND cidade.estado_uf = estado.uf
+     AND produto_venda.venda_codigo = venda.codigo
+     AND produto_venda.produto_codigo = produto.codigo
+     AND produto.fornecedor_codigo = fornecedor.codigo
+GROUP BY fornecedor.codigo,
+	 fornecedor.nome,
+	 cidade.nome,
+	 estado.nome
+ORDER BY sum(produto_venda.quantidade) DESC,
+	 sum(produto.valor_unitario * produto_venda.quantidade) DESC
+   LIMIT 5;
+  	 
+● Total (quantidade) de produtos vendidos por tipo de produto;
+  SELECT tipo_produto.nome AS "Tipo de produto",
+  	 sum(produto_venda.quantidade) AS "Quantidade"
+    FROM tipo_produto,
+    	 produto_venda,
+    	 produto,
+    	 venda
+   WHERE produto_venda.produto_codigo = produto.codigo
+     AND produto_venda.venda_codigo = venda.codigo
+     AND produto.tipo_produto_codigo = tipo_produto.codigo
+GROUP BY tipo_produto.codigo
+ORDER BY sum(produto_venda.quantidade) DESC;
+
+● 5 prateleiras que mais tiveram produtos vendidos: apresentar o número da
+prateleira, setor e quantidade de produtos vendidas;
+  SELECT prateleira.numero AS "nº Prateleira",
+  	 prateleira.setor AS "Setor Prateleira",
+  	 sum(produto_venda.quantidade) AS "Quantidade vendida"
+    FROM prateleira,
+    	 produto_venda,
+    	 produto,
+    	 venda
+   WHERE produto_venda.produto_codigo = produto.codigo
+     AND produto_venda.venda_codigo = venda.codigo
+     AND produto.prateleira_codigo = prateleira.codigo
+GROUP BY prateleira.numero,
+	 prateleira.setor
+ORDER BY sum(produto_venda.quantidade) DESC
+   LIMIT 5;
+
+● Relação de produtos com estoque atualizado: código do produto, nome, quantidade
+de produtos vendidas, estoque atualizado (estoque original - quantidade de produtos
+vendidas);
+  SELECT produto.codigo AS "Código de Produto",
+  	 produto.nome AS "Nome do Produto",
+  	 sum(produto_venda.quantidade) AS "Quantidade Vendida",
+  	 produto.estoque - sum(produto_venda.quantidade) AS "Estoque Atual"
+    FROM produto,
+    	 produto_venda
+   WHERE produto_venda.produto_codigo = produto.codigo
+GROUP BY produto.codigo,
+	 produto.nome,
+	 produto.estoque
+ORDER BY produto.codigo;

@@ -1,0 +1,14 @@
+create table estado (
+municipio varchar(200) not null,
+codigo char(7) not null primary key,
+gentilico varchar(200) not null,
+prefeito varchar(200) not null,
+area_territorial numeric(10,2) not null,
+populacao_estimada int not null,
+densidade_demografica numeric(10,2) not null,
+porcentagem_escolarizacao numeric(10,2) not null,
+idhm numeric(10,2) not null,
+mortalidade_infantil varchar(10),
+receitas_realizadas_x1000 numeric(15,2) not null,
+despesas_empenhadas_x1000 numeric(15,2) not null,
+pib_per_capita numeric(10,2) not null);

@@ -1,0 +1,20 @@
+Requisitos Funcionais
+- Manter cliente 
+- Manter funcionário
+- Manter OS
+- Manter agenda
+- Manter estoque
+- Manter fornecedor
+- Manter fincanceiro
+- Emitir relatório de cliente e OS
+- Emitir relatório financeiro
+- Emitir NF
+
+Requisitos não funcionais
+- Os dados deverão ser armazenados em um banco de dados postgreSQL
+- Compatibilidade com Windows, Ubuntu e MacOS
+- Ser acessivel
+- Confirmação de exclusão
+- Design minimalista
+- Seguro
+- LGPD

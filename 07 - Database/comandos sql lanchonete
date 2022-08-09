@@ -1,0 +1,72 @@
+1 - Para criar o banco de dados da lanchonete:
+create database lanchonete;
+
+2 - Para criar uma tabela de clientes dentro do banco de dados:
+create table clientes (
+cpf varchar(15) not null primary key,
+nome varchar(255) not null,
+celular varchar(255) not null,
+possui_whatsapp boolean not null,
+email varchar(45) not null,
+rua varchar(255) not null,
+numero integer not null,
+complemento varchar(45),
+data_cadastro date not null,
+produto_preferido varchar(255),
+modo_entrega varchar(14) not null);
+
+3 - Para criar uma tabela de produtos dentro do banco de dados:
+create table produtos (
+codigo_barras varchar(13) not null primary key,
+descricao varchar(255) not null,
+quantidade smallint not null,
+preco decimal(4,2) not null,
+data_cadastro date not null,
+estoque_minimo smallint;
+
+4 - Para criar uma tabela de colaboradores dentro do banco de dados:
+create table colaboradores (
+cpf varchar(15) not null primary key,
+nome varchar(255) not null,
+email varchar(255) not null,
+celular varchar(255) not null,
+rua varchar(255) not null,
+numero integer not null,
+complemento varchar(45),
+cargo varchar(255) not null,
+setor varchar(255) not null,
+salario smallint not null,
+data_cadastro date not null);
+
+5 - Para inserir dados na tabela clientes:
+insert into clientes (cpf, nome, celular, possui_whatsapp, email, rua, numero, complemento, data_cadastro, produto_preferido, modo_entrega) values ('123.456.789/10', 'Juca Bala', '(99)999-999-888', true, 'jucabala@email.com', 'Rua Y', 99, 'casa', '2018-09-28', 'misto', 'retirada');
+
+insert into clientes (cpf, nome, celular, possui_whatsapp, email, rua, numero, complemento, data_cadastro, produto_preferido, modo_entrega) values ('123.456.789/11', 'Viktoriya Barbosa', '(99)999-999-888', false, 'viktoriyabarbosa@email.com', 'Rua X', 92, 'apto 301', '2018-09-29', 'hamburger', 'motoboy');
+
+insert into clientes (cpf, nome, celular, possui_whatsapp, email, rua, numero, complemento, data_cadastro, produto_preferido, modo_entrega) values ('123.456.789/12', 'Kian Quintas', '(99)999-999-777', true, 'kianquintas@email.com', 'Rua Z', 82, '', '2018-10-03', 'hamburger', 'motoboy');
+
+insert into clientes (cpf, nome, celular, possui_whatsapp, email, rua, numero, complemento, data_cadastro, produto_preferido, modo_entrega) values ('123.456.789/13', 'Ticiane Rijo', '(99)999-999-666', true, 'ticianerijo@email.com', 'Rua A', 72, '', '2018-10-03', 'hamburger', 'retirada');
+
+insert into clientes (cpf, nome, celular, possui_whatsapp, email, rua, numero, complemento, data_cadastro, produto_preferido, modo_entrega) values ('123.456.789/14', 'Diamantino Prado', '(99)999-999-555', true, 'diamantinoprado@email.com', 'Rua A', 52, '', '2018-10-03', 'cheeseburger', 'retirada');
+
+6 - Para inserir dados na tabela colaboradores:
+insert into colaboradores (cpf, nome, email, celular, rua, numero, complemento, cargo, setor, salario, data_cadastro) values ('987.654.321/09', 'Amira Lários', 'amiralarios@email.com', '(99)111-999-999', 'Rua B', 15, 'casa', 'atendente', 'caixa', '1500', '2015-12-13');
+
+insert into colaboradores (cpf, nome, email, celular, rua, numero, complemento, cargo, setor, salario, data_cadastro) values ('987.654.321/08', 'Elzira Benevides', 'elzirabenevides@email.com', '(99)222-999-999', 'Rua B', 130, 'apto 604', 'gerente', 'financeiro', '4700', '2012-01-10');
+
+insert into colaboradores (cpf, nome, email, celular, rua, numero, complemento, cargo, setor, salario, data_cadastro) values ('987.654.321/07', 'Jonata Arouca', 'jonataarouca@email.com', '(99)333-999-999', 'Rua C', 240, 'casa', 'zelador', '', '2140', '2017-03-10');
+
+insert into colaboradores (cpf, nome, email, celular, rua, numero, complemento, cargo, setor, salario, data_cadastro) values ('987.654.321/06', 'Saúl Camilo', 'saulcamilo@email.com', '(99)444-999-999', 'Rua C', 440, 'apto 403', 'Auxiliar de cozinha', 'cozinha', '2550', '2018-04-20');
+
+insert into colaboradores (cpf, nome, email, celular, rua, numero, complemento, cargo, setor, salario, data_cadastro) values ('987.654.321/05', 'Gonçalo Serpa', 'goncaloserpa@email.com', '(99)555-999-999', 'Rua C', 440, 'apto 703', 'Chef de cozinha', 'cozinha', '7550', '2017-07-16');
+
+7 - Para inserir dados na tabela produtos:
+insert into produtos (codigo_barras, descricao, quantidade, preco, data_cadastro, estoque_minimo) values ('555444332221', 'coca-cola', 250, 7.90, '2015-01-02', 50);
+
+insert into produtos (codigo_barras, descricao, quantidade, preco, data_cadastro, estoque_minimo) values ('555444332222', 'pepsi', 200, 6.90, '2015-01-02', 50); 
+
+insert into produtos (codigo_barras, descricao, quantidade, preco, data_cadastro, estoque_minimo) values ('555444332223', 'suco uva', 150, 4.90, '2015-01-02', 30);
+
+insert into produtos (codigo_barras, descricao, quantidade, preco, data_cadastro, estoque_minimo) values ('555444332223', 'suco abacaxi', 300, 4.90, '2015-01-02', 50);
+
+insert into produtos (codigo_barras, descricao, quantidade, preco, data_cadastro, estoque_minimo) values ('555444332225', 'suco laranja', 400, 4.90, '2015-01-02', 100);

@@ -1,0 +1,27 @@
+--Consulta que demonstre o total de Receitas e o total de Despesas do Estado do RS.
+SELECT sum(receitas_realizadas_x1000) AS "receitas",
+       sum(despesas_empenhadas_x1000) AS "despesas"
+  FROM estado;
+
+--Consulta que apresente quais municípios do RS possuem mais de 20 mil habitantes.
+SELECT municipio AS "municipio"
+  FROM estado
+ WHERE populacao_estimada > 20000;
+
+--Consulta que apresente quantos municípios do RS possuem mais de 20 mil habitantes.
+SELECT count(*) AS "quantidade"
+  FROM estado
+ WHERE populacao_estimada > 20000;
+
+--Consulta que apresente quais municípios gaúchos possum índice IDHM entre 0.6 e 0.7.
+ SELECT municipio AS "municipio"
+   FROM estado 
+  WHERE idhm 
+BETWEEN 0.6 and 0.7;
+
+--Consulta que apresente quem é o maior município e quem é o menor muncípio do RS. 
+SELECT municipio AS "municipio",
+       area_territorial AS "area_territorial" 
+  FROM estado 
+ WHERE area_territorial=(select max(area_territorial) from estado) 
+    OR area_territorial=(select min(area_territorial) from estado);

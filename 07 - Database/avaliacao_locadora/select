@@ -1,0 +1,177 @@
+--1. Lista de filiais (codigo, cnpj, telefone, email), tente trazer o nome_fantasia, razao_social da locadora, assim como também o nome da cidade e estado);
+    SELECT filial.codigo AS "Código da filial",
+    	   filial.cnpj AS "CNPJ da filial",
+    	   filial.telefone AS "Telefone",
+    	   filial.email AS "E-mail",
+    	   locadora.nome_fantasia AS "Nome fantasia",
+    	   locadora.razao_social AS "Razão social",
+    	   cidade.nome AS "Cidade",
+    	   estado.nome AS "Estado"
+      FROM filial
+INNER JOIN locadora ON (locadora.codigo = filial.locadora_codigo)
+INNER JOIN cidade ON (cidade.codigo = filial.cidade_codigo)
+INNER JOIN estado ON (estado.uf = cidade.estado_uf)
+  GROUP BY filial.codigo,
+    	   filial.cnpj,
+    	   filial.telefone,
+    	   filial.email,
+  	   locadora.nome_fantasia,
+    	   locadora.razao_social,
+    	   cidade.nome,
+    	   estado.nome
+  ORDER BY filial.codigo;
+  
+--2. Lista de veículos, apresentando marca, modelo, placa e a informação “Automático” ou “Manual” conforme o tipo do câmbio.
+   SELECT veiculo.marca AS "Marca do veículo",
+   	  veiculo.modelo AS "Modelo",
+   	  veiculo.placa AS "Placa",
+CASE WHEN veiculo.cambio = 'A'
+     THEN 'Automático'
+     ELSE 'Manual'
+      END  AS "Cambio"
+     FROM veiculo;
+
+--3. Lista de clientes (codigo, nome, telefone, email, cpf), tentar trazer também o nome da cidade e estado;
+    SELECT cliente.codigo AS "Código do cliente",
+           cliente.nome AS "Nome",
+           cliente.email AS "E-mail",
+           cliente.cpf AS "CPF",
+           cidade.nome AS "Cidade",
+           estado.nome AS "Estado"
+      FROM cliente
+INNER JOIN cidade ON (cidade.codigo = cliente.cidade_codigo)
+INNER JOIN estado ON (estado.uf = cidade.estado_uf)
+  GROUP BY cliente.codigo,
+           cliente.nome,
+  	   cliente.email,
+  	   cliente.cpf,
+    	   cidade.nome,
+    	   estado.nome
+  ORDER BY cliente.codigo;
+
+--4. Lista de veículos (codigo, marca, modelo), tentar trazer nome do tipo de veículo, cnpj da filial, e nome da cidade da filial;
+    SELECT veiculo.codigo AS "Código do veículo",
+  	   veiculo.marca AS "Marca",
+  	   veiculo.modelo AS "Modelo",
+  	   tipo_carro.nome AS "Tipo",
+  	   filial.cnpj AS "CNPJ filial",
+  	   cidade.nome AS "Cidade"
+      FROM veiculo
+INNER JOIN tipo_carro ON (tipo_carro.codigo = veiculo.tipo_carro_codigo)
+INNER JOIN filial ON (filial.codigo = veiculo.filial_codigo)
+INNER JOIN cidade ON (cidade.codigo = filial.cidade_codigo)
+  GROUP BY veiculo.codigo,
+  	   veiculo.marca,
+  	   veiculo.modelo,
+  	   tipo_carro.nome,
+  	   filial.cnpj,
+  	   cidade.nome
+  ORDER BY veiculo.codigo;
+
+--5. Lista de veículos (codigo, marca, modelo, capacidade_de_pessoas), apresentar também a quantidade (contagem) de opcionais do veículo;
+    SELECT veiculo.codigo AS "Código do veículo",
+    	   veiculo.marca AS "Marca",
+    	   veiculo.modelo AS "Modelo",
+    	   veiculo.capacidade_pessoas AS "Quant. Ocupantes",
+    	   count(opcionais.*) AS "Quantidade de opcionais"
+      FROM veiculo
+ LEFT JOIN veiculo_opcionais ON (veiculo_opcionais.veiculo_codigo = veiculo.codigo)
+ LEFT JOIN opcionais ON (veiculo_opcionais.opcionais_codigo = opcionais.codigo)
+  GROUP BY veiculo.codigo,
+    	   veiculo.marca,
+    	   veiculo.modelo,
+    	   veiculo.capacidade_pessoas
+  ORDER BY veiculo.codigo;
+   
+--6. Lista de reservas contendo (código da locação, código do veículo, marca do veículo, modelo do veículo).
+     SELECT locacao.codigo AS "Código da locação",
+     	    veiculo.codigo AS "Código do veículo",
+     	    veiculo.marca AS "Marca do veículo",
+     	    veiculo.modelo AS "Modelo do veículo"
+       FROM locacao
+ INNER JOIN veiculo ON (veiculo.codigo = locacao.veiculo_codigo)
+      WHERE locacao.situacao = 'R';
+
+--7. Lista de locações (código da locação, data e hora da locação, nome do funcionário que fez a locação, cnpj da filial que fez a locação, nome do cliente que locou, telefone do cliente, marca do veículo, modelo do veículo, placa do veículo;
+    SELECT locacao.codigo AS "Código da locação",
+   	   locacao.datahora AS "Data/hora",
+   	   funcionario.nome AS "Funcionário resp.",
+   	   filial.cnpj AS "CNPJ filial",
+   	   cliente.nome AS "Nome do locador",
+   	   veiculo.marca AS "Marca do veículo",
+   	   veiculo.modelo AS "Modelo",
+    	   veiculo.placa AS "Placa"
+      FROM locacao
+INNER JOIN funcionario ON (funcionario.codigo = locacao.locacao_funcionario_codigo)
+INNER JOIN filial ON (filial.codigo = funcionario.filial_codigo)
+INNER JOIN cliente ON (cliente.codigo = locacao.cliente_codigo)
+INNER JOIN veiculo ON (veiculo.codigo = locacao.veiculo_codigo)
+  GROUP BY locacao.codigo,
+   	   locacao.datahora,
+   	   funcionario.nome,
+   	   filial.cnpj,
+   	   cliente.nome,
+   	   veiculo.marca,
+   	   veiculo.modelo,
+    	   veiculo.placa
+  ORDER BY locacao.codigo;
+
+--8. Funcionário que mais faturou (valor_total) soma do valor_total, apresentar o nome, nome da cidade, nome do estado, cnpj da filial e valor total faturado. Considerar apenas locações devolvidas.
+    SELECT funcionario.nome AS "Funcionário",
+    	   money(sum(locacao.valor_total)) AS "Valor Total",
+    	   cidade.nome AS "Cidade",
+    	   estado.nome AS "Estado",
+    	   filial.cnpj AS "CNPJ filial"
+      FROM funcionario
+INNER JOIN locacao ON (locacao.devolucao_funcionario_codigo = funcionario.codigo)
+INNER JOIN cidade ON (cidade.codigo = funcionario.cidade_codigo)
+INNER JOIN estado ON (estado.uf = cidade.estado_uf)
+INNER JOIN filial ON (filial.cidade_codigo = cidade.codigo)
+  GROUP BY funcionario.nome,
+	   cidade.nome,
+    	   estado.nome,
+    	   filial.cnpj
+  ORDER BY sum(locacao.valor_total) DESC
+     LIMIT 1;
+
+--9. Lista de opcionais com a quantidade carros em que ele está presente. Apresentar o nome do opcional e quantidade de carros dele;
+     SELECT opcionais.nome AS "Opcional",
+	    count(veiculo_opcionais.*) AS "Quant. veículo"
+       FROM opcionais
+ INNER JOIN veiculo_opcionais ON (veiculo_opcionais.opcionais_codigo = opcionais.codigo)
+ INNER JOIN veiculo ON (veiculo.codigo = veiculo_opcionais.veiculo_codigo)
+   GROUP BY opcionais.nome;
+
+--10. Lista do tipo de carros com a quantidade de veículos do tipo;
+     SELECT tipo_carro.nome AS "Tipo do carro",
+	    count(veiculo.*) AS "Quant. veículo"
+       FROM tipo_carro
+  LEFT JOIN veiculo ON (veiculo.tipo_carro_codigo = tipo_carro.codigo)
+   GROUP BY tipo_carro.nome;
+
+--11. Lista de tipo de carros com o valor médio de locação (levar em consideração a soma do valor_total) da locação, considerando apenas locações devolvidas;
+    SELECT tipo_carro.nome AS "Tipo do carro",
+   	   money(AVG(locacao.valor_total)) AS "Valor médio de locação"
+      FROM funcionario
+INNER JOIN locacao ON (locacao.devolucao_funcionario_codigo = funcionario.codigo)
+INNER JOIN veiculo ON (veiculo.codigo = locacao.veiculo_codigo)
+INNER JOIN tipo_carro ON (tipo_carro.codigo = veiculo.tipo_carro_codigo)
+  GROUP BY tipo_carro.nome;
+
+--12. Funcionário que mais recebeu devoluções de veículos, apresentar o nome, cnpj da filial, nome da cidade, nome do estado e a quantidade de devoluções.
+     SELECT funcionario.nome AS "Funcionário",
+     	    filial.cnpj AS "CNPJ filial",
+     	    cidade.nome AS "Cidade",
+     	    estado.nome AS "Estado",
+     	    count(devolucao_funcionario_codigo) AS "Quant. devoluções"
+       FROM funcionario
+ INNER JOIN filial ON (filial.codigo = funcionario.filial_codigo)
+ INNER JOIN cidade ON (cidade.codigo = filial.cidade_codigo)
+ INNER JOIN estado ON (estado.uf = cidade.estado_uf)
+ INNER JOIN locacao ON (locacao.devolucao_funcionario_codigo = funcionario.codigo)
+   GROUP BY funcionario.nome,
+     	    filial.cnpj,
+     	    cidade.nome,
+     	    estado.nome
+   ORDER BY count(devolucao_funcionario_codigo) DESC
+      LIMIT 1;

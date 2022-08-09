@@ -1,0 +1,11 @@
+COMANDOS PSQL
+
+\l = Listar bases
+
+\c = Conectar bases
+
+\d = Listar tabelas
+
+\? = Listar todos comandos psql
+
+q = Sair

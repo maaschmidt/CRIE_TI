@@ -1,0 +1,67 @@
+--● Lista de filiais: código da filial, nome fantasia, razao_social, inscricao_estadual, nome da cidade, estado;
+    SELECT filial.codigo AS "Código Filial",
+  	   filial.inscricao_estadual AS "Inscrião Estadual",
+  	   cidade.nome AS "Cidade da Filial",
+  	   estado.nome AS "Estado da Filial",
+  	   empresa.nome_fantasia AS "Nome Fantasia da Empresa",
+  	   empresa.razao_social AS "Razão Social da Empresa"
+      FROM empresa
+INNER JOIN filial ON (filial.empresa_codigo = empresa.codigo)
+INNER JOIN cidade ON (filial.cidade_codigo = cidade.codigo)
+INNER JOIN estado ON (cidade.estado_uf = estado.uf);
+
+--● Lista de funcionarios: código do funcionário, nome, email, cnpj filial, nome da cidade,
+nome do cargo;
+    SELECT funcionario.codigo AS "Código do Funcionário",
+  	   funcionario.nome AS "Nome",
+  	   funcionario.email AS "E-mail",
+  	   cidade.nome AS "Cidade",
+  	   cargo.nome AS "Cargo",
+           filial.cnpj AS "CNPJ da Filial"
+      FROM funcionario
+INNER JOIN cidade ON (funcionario.cidade_codigo = cidade.codigo)
+INNER JOIN cargo ON (funcionario.cargo_codigo = cargo.codigo)
+INNER JOIN filial ON (funcionario.filial_codigo = filial.codigo);
+
+
+
+
+-- ● Listar estados com cidades, mesmo se não existir cidades para algum estado;
+    SELECT cidade.nome AS "Cidade",
+           estado.nome AS "Estado",
+           estado.uf AS "UF"
+      FROM cidade
+RIGHT JOIN estado ON (cidade.estado_uf = estado.uf);
+
+    SELECT cidade.nome AS "Cidade",
+           estado.nome AS "Estado",
+           estado.uf AS "UF"
+      FROM estado
+ LEFT JOIN cidade ON (cidade.estado_uf = estado.uf);
+ 
+-- ● Quantidade de produtos vendidos por prateleira;
+   SELECT prateleira.numero,
+   	  COUNT(produto.nome)
+     FROM prateleira
+LEFT JOIN produto ON (produto.prateleira_codigo = prateleira.codigo)
+ GROUP BY prateleira.numero
+ ORDER BY prateleira.numero;
+ 
+-- ● Quantidade de produtos vendidos por tipo de produto;
+   SELECT tipo_produto.nome AS "Tipo de produto",
+   	  SUM(produto_venda.quantidade) AS "Quant."
+     FROM tipo_produto
+LEFT JOIN produto ON produto.tipo_produto_codigo = tipo_produto.codigo
+LEFT JOIN produto_venda ON produto_venda.produto_codigo = produto.codigo
+ GROUP BY tipo_produto.nome
+ ORDER BY SUM(produto.estoque) DESC;
+
+--● Quantidade de produtos comprados por cliente.
+   SELECT cliente.nome AS "Cliente",
+   	  COUNT(produto_venda.quantidade) AS "Quant."
+     FROM cliente,
+     	  venda
+LEFT JOIN produto_venda ON produto_venda.venda_codigo = venda.codigo
+ GROUP BY cliente.nome;
+
+

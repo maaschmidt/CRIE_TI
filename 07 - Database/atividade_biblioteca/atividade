@@ -1,0 +1,36 @@
+  Estudo de caso Biblioteca
+● A biblioteca possui cadastro de livros, com código, título, autor, edição, ano;
+● Os livros possuem gêneros (fantasia, ação, aventura, romance, horror...);
+● Os livros possuem diferentes autores (inclusive mais de um);
+Livros {
+   codigo
+   titulo
+   edicao
+   ano
+   genero
+Autor {
+  nome
+● Os livros são emprestados para os usuários, precisam ser armazenados a data/hora do empréstimo, data prevista de devolução, data/hora da devolução, para qual usuário foi emprestado, por qual atendente o livro foi emprestado;
+Emprestimo{
+  codigo
+  data/hora
+  previsao_devolucao
+  data/hora_devolucao
+  usuario_codigo
+  atendente_codigo
+● O atendente possui um código, nome, telefone, email e endereço;
+Atendente{
+  codigo
+  nome
+  telefone
+  email
+  endereço
+● O usuário possui código, nome, telefone, email, endereço.
+Usuário{
+  codigo
+  nome
+  telefone
+  email
+  endereco
+  
+  Exercício: Criar o diagrama ER lógico do banco de dados da biblioteca.  

@@ -1,0 +1,119 @@
+WHERE
+1. Todas os produtos (codigo, nome, valor de venda) com unidade de medida Kg:
+  select codigo, nome, valor_unitario from produto where unidade_de_medida = 'Kg';
+
+2. Todos os produtos (codigo, nome, valor de venda) vendidos por João Frutas:
+  select codigo, nome, valor_unitario from produto where fornecedor = 'João Frutas';
+
+3. Todos os produtos (todas as colunas) que custam até R$ 10,00;:
+  select * from produto where valor_unitario <= 10.00;
+
+4. Todos os produtos (codigo, nome, valor de venda) que custam entre R$ 5,00 e R$ 10,00:
+  select * from produto where valor_unitario >= 5.00 and valor_unitario <= 10.00;
+  select * from produto where valor_unitario between 5.00 and 10.00;
+
+5. Todas os produtos (todas as colunas) cuja última venda ocorreu entre 13/05/2022 e hoje:
+  select * from produto where ultima_venda between '2022-05-13' and current_date;
+
+6. Todos os produtos (codigo, nome, valor de venda) do tipo Higiêne pessoal que custam até R$ 15,00:
+  select codigo, nome, valor_unitario from produto where tipo like '%pessoal' and valor_unitario <= 15.00;
+
+7. Todos os produtos (codigo, nome, valor de venda) que não possuem altura:
+  select codigo, nome, valor_unitario from produto where altura = '0';
+
+8. Todos os produtos (Todas as colunas) do tipo Un que possuem 10 ou menos unidades no estoque:
+  select * from produto where unidade_de_medida = 'Un' and estoque <= '10';
+_____________________________________________________________________
+
+ORDER BY
+9. Todos os produtos ordenados pelo código:
+  Ascendene: select * from produto order by codigo ASC;
+  Desscendene: select * from produto order by codigo DESC;
+
+10. Todos os produtos Hortifruti ordenados pelo valor:
+  select * from produto where tipo like 'Hortifruti' order by valor_unitario;
+
+11. Todos os produtos ordenados pela Unidade de medida:
+  select * from produto order by unidade_de_medida;
+
+12. Todos os produtos ordenados vendidos na última semana, ordenados pelo tipo:
+  select * from produto where ultima_venda between '2022-06-13' and '2022-06-19' order by tipo;
+
+13. Todos os produtos ordenados do menor valor para o maior:
+  select valor_unitario from produto order by valor_unitario;
+
+14. Todos os produtos do fornecedor João Frutas, comprados na semana passada, ordenados pela data da compra:
+  select * from produto where fornecedor like 'João%' and ultima_compra between '2022-06-13' and '2022-06-19' order by ultima_compra;
+_____________________________________________________________________
+
+AGREGAÇÃO/GROUP BY
+15. Total de produtos:
+  select count(fornecedor) from produto;
+
+16. Total de produtos por fornecedor:
+  select count(*), fornecedor from produto group by fornecedor order by 1;
+
+17. Total de produtos por tipo:
+  select count(*), tipo from produto group by tipo order by 1;
+
+18. Total de produtos vendidos por dia:
+  select count(*), ultima_venda from produto group by ultima_venda order by 1;
+
+19. Média de valor unitário comprados por dia:
+  select avg(valor_unitario), ultima_compra from produto group by ultima_compra order by ultima_compra;
+
+20. Valor total do estoque dos produtos vendidos a Kg:
+  select sum(valor_unitario * estoque), unidade_de_medida from produto where unidade_de_medida like 'Kg' group by unidade_de_medida;
+
+21. Valor total do estoque de produtos vendido por Un:
+  select sum(valor_unitario * estoque), unidade_de_medida from produto where unidade_de_medida like 'Un' group by unidade_de_medida;
+
+22. Valor total por unidade de medida:
+  select sum(valor_unitario * estoque), unidade_de_medida from produto group by unidade_de_medida;
+
+23. Maior valor de venda:
+  select max(valor_unitario)from produto;
+
+24. Menor valor de venda:
+  select min(valor_unitario)from produto;
+
+25. Total de produtos cujo valor de venda é superior a R$ 10,00:
+  select count(*) from produto where valor_unitario >= 10.00;
+_____________________________________________________________________
+
+CASE WHEN
+26. Apresentar unidade "Por quilo" quando unidade de medida for Kg:
+  select codigo, nome, (CASE WHEN unidade_de_medida = 'Kg' THEN 'Por quilo' ELSE unidade_de_medida END) from produto;
+  
+27. Apresentar unidade "Por unidade" quando unidade de medida for Un:
+  select codigo, nome, (CASE WHEN unidade_de_medida = 'Un' THEN 'Por unidade' ELSE unidade_de_medida END) from produto;
+  
+*Para converter os 2 juntos
+  select codigo, nome, CASE WHEN unidade_de_medida = 'Kg' THEN 'Por quilo' WHEN unidade_de_medida = 'Un' THEN 'Por unidade' ELSE unidade_de_medida END from produto;
+  
+_____________________________________________________________________
+
+UPDATE
+28. Alterar o valor do tipo "Higiêne pessoal" para "Higiêne":
+29. Realizar uma venda de 5 unidades no produto "Batata Inglesa":
+30. Realzar uma venda de 4,5Kg de "Laranja Suco":
+31. Realizar uma compra de 50 unidades para cada produto de Higiêne:
+32. Atualizar os preços do mercado todo em 2%:
+33. Dar deconto de 5% em produtos Hortifruti:
+_____________________________________________________________________
+
+DDL - ALTER + UPDATE
+34. Adicionar a coluna valor_de_compra:
+35. Atualizar o valor de compra com o valor de venda - 15%:
+36. Adicionar uma coluna ativo, e desativar produtos do tipo Carnes:
+37. Apresentar os produtos desativados, mostrando o código, nome, fornecedor, valor de venda, data da última venda, ordenados pelo valor de venda do maior para o menor:
+_____________________________________________________________________
+
+DELETE
+38. Apagar todos produtos inativos:
+39. Apagar produtos que não são vendidos a mais uma semana:
+_____________________________________________________________________
+
+IMPORTAÇÃO DE PLANILHA
+40. Importar planilha com dados de produtos:
+41. Criar dados de atendentes com mockaroo.com:

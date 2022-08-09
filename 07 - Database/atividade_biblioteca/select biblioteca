@@ -1,0 +1,71 @@
+○ Lista de empréstimos, apresentando também o nome do usuário e nome do atendente que o realizou;
+    SELECT usuario.nome AS "Usuario",
+	   atendente.nome AS "Atendente"
+      FROM emprestimo
+INNER JOIN usuario ON (usuario.codigo = emprestimo.usuario_codigo)
+INNER JOIN atendente ON (atendente.codigo = emprestimo.atendente_codigo);
+
+○ Quantidade de livros por gênero;
+     SELECT genero.nome AS "Genero",
+            count(livro.*) AS "Quantidade"
+       FROM genero
+  LEFT JOIN livro ON (livro.genero_codigo = genero.codigo)
+   GROUP BY genero.nome;
+   
+○ Quantidade de empréstimos por gênero;
+     SELECT genero.nome AS "Genero",
+            count(emprestimo.*) AS "Quantidade"
+       FROM genero
+  LEFT JOIN livro ON (livro.genero_codigo = genero.codigo)
+  LEFT JOIN emprestimo ON (emprestimo.livro_codigo = livro.codigo)
+   GROUP BY genero.nome
+   
+○ Quantidade de livros por autores;
+     SELECT autor.nome AS "Autor",
+	    count(livro.*) AS "Quantidade"
+       FROM autor
+  LEFT JOIN livro_autor ON (livro_autor.autor_codigo = autor.codigo)
+  LEFT JOIN livro ON (livro.codigo = livro_autor.livro_codigo)
+   GROUP BY autor.nome
+   ORDER BY autor.nome
+
+○ Quantidade de empréstimos por atendente;
+     SELECT atendente.nome AS "Atendete",
+            count(emprestimo.*) AS "Quantidade"
+       FROM atendente
+  LEFT JOIN emprestimo ON (emprestimo.atendente_codigo = atendente.codigo)
+   GROUP BY atendente.nome
+   ORDER BY atendente.nome
+
+○ Quantidade de empréstimos por usuário.
+     SELECT usuario.nome AS "Usuário",
+            count(emprestimo.*) AS "Quantidade"
+       FROM usuario
+  LEFT JOIN emprestimo ON (emprestimo.usuario_codigo = usuario.codigo)
+   GROUP BY usuario.nome
+   ORDER BY usuario.nome
+
+○ Quantidade de empréstimos em aberto por usuário, apresentando também o
+título do livro;
+     SELECT livro.titulo AS "Título",
+	    usuario.nome AS "Usuario",
+            count(emprestimo.*) AS "Quantidade"
+       FROM livro
+  LEFT JOIN emprestimo ON (emprestimo.livro_codigo = livro.codigo)
+  LEFT JOIN usuario ON (usuario.codigo = emprestimo.usuario_codigo)
+      WHERE emprestimo.data_devolucao is null
+   GROUP BY livro.titulo,
+            usuario.nome
+
+○ Livros com seus respectivos autores e gênero, para mais de um autor na
+mesma linha, utilizar a função de agregação string_agg;
+   SELECT livro.titulo AS "Titulo",
+          String_agg(autor.nome, ', ') AS "Autor",
+          genero.nome AS "Genero"
+     FROM livro
+LEFT JOIN livro_autor ON (livro.codigo = livro_autor.livro_codigo)
+LEFT JOIN autor ON (autor.codigo = livro_autor.autor_codigo)
+LEFT JOIN genero ON (genero.codigo = livro.genero_codigo)
+ GROUP BY livro.titulo,
+          genero.nome
+ ORDER BY livro.titulo

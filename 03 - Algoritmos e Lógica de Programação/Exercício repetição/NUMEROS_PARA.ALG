@@ -1,0 +1,21 @@
+Algoritmo "numeros_para"
+//Desenvolva um algoritmo que leia 5 numeros e diga se o número está ou não na
+//faixa de 1200 à 3000 e quantos estão nesta faixa.
+Var
+   c, n, total: inteiro
+Inicio
+      para c de 1 ate 5 faca
+           escreva ("Número: ")
+           leia (n)
+
+           se (n >= 1200) e (n <= 3000) entao
+              escreval ("Número correspondente")
+              total <- total + 1
+           senao
+                escreval ("Número NÃO correspondente")
+           fimse
+           escreval
+      fimpara
+      escreval
+      escreval ("Foi digiado",total, " números correspondentes")
+Fimalgoritmo

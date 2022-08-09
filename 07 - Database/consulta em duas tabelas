@@ -1,0 +1,16 @@
+select cidade.codigo, cidade.nome, estado.nome from cidade, estado where cidade.estado_uf = estado.uf;
+cidade.codigo: refere ao codigo da tabela cidade
+
+cidade.nome: refere ao nome da tabela cidade
+
+estado.nome: refere ao nome da tabela estado
+
+from cidade, estado: para buscar nas duas tabelas
+
+where cidade.estado_uf = estado.uf: onde estado_uf(chave estrangeira) da tabela cidade é igual a uf da tabela estado
+
+
+
+
+
+select empresa.codigo, empresa.nome_fantasia, empresa.razao_social, filial.cnpj, filial.inscricao_estadual from empresa, filial where filial.empresa_codigo = empresa.codigo;
