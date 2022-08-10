@@ -44,6 +44,20 @@ body{
     margin-top: 20px;
     width: 100%;
 }
+#equalTo{
+    width: 125px;
+    background: #58D68D;
+}
+
+#clear{
+    background: #FF8A65;
+}
+#equalTo:hover{
+    background: #abffce;
+}
+#clear:hover{
+    background: #fdb59f;
+}
 .buttons button{
     height: 50px;
     width: 50px;
@@ -60,13 +74,6 @@ body{
 }
 .buttons button:hover{
     background: rgba(255, 255, 255, 0.2);
-}
-#equalTo{
-    width: 125px;
-    background: #58D68D;
-}
-#clear{
-    background: #FF8A65;
 }
 body{
     background-color: #000;
