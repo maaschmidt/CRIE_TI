@@ -1,20 +1,20 @@
 var result = document.querySelector("#result");
 
-function digito(tecla){
+function digit(key){
     var div = document.createElement("div");
-    div.innerHTML = tecla;
+    div.innerHTML = key;
     result.appendChild(div);
 }
 
-function limpar(){
+function erase(){
     result.innerHTML = "";
 }
 
-function deletaUltimo(){
+function deleteLast(){
     result.removeChild(result.lastChild);
 }
 
-function igualA(){
-    let resultado = eval(result.textContent);
-    result.innerHTML = resultado;
+function equal(){
+    let resulted = eval(result.textContent);
+    result.innerHTML = resulted;
 }
