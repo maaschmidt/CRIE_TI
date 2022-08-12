@@ -7,7 +7,7 @@ async function main(){
     dados[0].codigo = "CRIE_TI";
 
     let gravar = JSON.stringify(dados);
-    fs.writeFile("marcel_04.json", gravar, (err) =>{
+    fs.writeFile("marcel_4.json", gravar, (err) =>{
     });
 }
 
