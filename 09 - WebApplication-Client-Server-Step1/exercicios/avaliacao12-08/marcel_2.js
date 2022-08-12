@@ -4,7 +4,7 @@ const https = require('https');
 const httpsGet = () => {
   return new Promise((resolve, reject) => {
     https.get("https://parallelum.com.br/fipe/api/v1/carros/marcas", function(response) {
-      let dados = '';
+      let dados = "";
 
       response.on('data', function (buffer) {
         dados += buffer;
