@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="image/svg" sizes="16x16" rel="icon" href="https://cdn-icons-png.flaticon.com/512/2374/2374370.png">
+    <title>CRIE-CALC</title>
+    <link rel="stylesheet" href="calculator.css">
+    
+</head>
+<body id="body">
+    <div id="head">
+        <p id="crie">CRIE</p> 
+        <p class="calc">_CALC</p>
+    </div>
+    <div id="main">
+        <div id="display">
+            <button id="light_mode_btn" onclick="turn_mode()">
+                <svg id="light_mode" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 64V448C362 448 448 362 448 256C448 149.1 362 64 256 64z"/></svg>
+            </button>
+            <h2 id="result"></h2>
+        </div>
+        <div class="buttons">
+            <button id="clear" onclick="erase()">C</button>
+            <button id="delete_single_num" onclick="delete_last()">⇦</button>
+            <button id="normal_btn" onclick="digit('/')">/</button>
+            <button id="normal_btn" onclick="digit('*')">*</button>
+        </div>
+        <div class="buttons">
+            <button id="normal_btn" onclick="digit(7)">7</button>
+            <button id="normal_btn" onclick="digit(8)">8</button>
+            <button id="normal_btn" onclick="digit(9)">9</button>
+            <button id="normal_btn" onclick="digit('-')">-</button>
+        </div>
+        <div class="buttons">
+            <button id="normal_btn" onclick="digit(4)">4</button>
+            <button id="normal_btn" onclick="digit(5)">5</button>
+            <button id="normal_btn" onclick="digit(6)">6</button>
+            <button id="normal_btn" onclick="digit('+')">+</button>
+        </div>
+        <div class="buttons">
+            <button id="normal_btn" onclick="digit(1)">1</button>
+            <button id="normal_btn" onclick="digit(2)">2</button>
+            <button id="normal_btn" onclick="digit(3)">3</button>
+            <button id="normal_btn" onclick="digit('.')">.</button>
+        </div>
+        <div class="buttons">
+            <button id="zero_btn" onclick="digit(0)">0</button>
+            <button id="zero_btn" onclick="digit('00')">00</button>
+            <button id="equalTo" onclick="equal()">=</button>
+        </div>
+    </div> 
+</body>
+<script src="calculator.js"></script>
+</html>
