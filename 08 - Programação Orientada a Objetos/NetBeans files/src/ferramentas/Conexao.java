@@ -18,7 +18,7 @@ public class Conexao {
     private final static String DRIVER = "org.postgresql.Driver";
     private final static String URL = "jdbc:postgresql://177.44.248.52:5432/poo";
     private final static String USER = "postgres";
-    private final static String PASS = "Vwfuscaiid7760";  
+    private final static String PASS = "...";  
     
     public static Connection con;
     public static Statement stmt;
