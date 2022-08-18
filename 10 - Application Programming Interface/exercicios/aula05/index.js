@@ -1,8 +1,9 @@
 const http = require('http');
 const PORT = 3000;
 const fs = require("fs");
+let dataTemp={};
 
-obterDados = () => {
+getData = () => {
   return new Promise((resolve, reject) => {
     fs.readFile("users.json", "utf-8", function(err, data){
       if(err){
@@ -13,24 +14,25 @@ obterDados = () => {
   })
 }
 
-mostrarDados = (data) => {
+showData = (data) => {
+  dataTemp = data;
   http.createServer((request, response) => {
-
+    data = JSON.parse(dataTemp);
     const url = request.url;
-    // const segments = url.split('/').filter((segment) => Boolean(segment));
+    const segments = url.split('/').filter((segment) => Boolean(segment));
     let status = 200;
 
     if (url === '/'){
       data = { message: 'Olá Mundo!' };
     } else if (url === '/users') {
-      data = data;
+      
     } else if (segments[0] === 'users' && segments.length === 2) {
-      const id =+ segments[1];
-      if (isNaN(id) || id < 1 || id > 100){
+      const id = +segments[1];
+      if (isNaN(id) || id < 1 || id > 7){
         status = 404;
         data = { error: 'Recurso não encontrado!'}
       } else {
-        data = { id: +segments[1] };
+        data = data[id-1];
       }
     } else {
       data = { error: 'Página não encontrada' };
@@ -49,8 +51,7 @@ mostrarDados = (data) => {
 }
 
 const main = () => {
-  
-  obterDados()
-    .then(mostrarDados);
+  getData()
+    .then(showData);
 }
 main();
