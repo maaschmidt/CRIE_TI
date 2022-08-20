@@ -1,6 +1,6 @@
 CREATE TABLE generos (id serial primary key, descricao varchar(45) not null);
 
-CREATE TABLE musicas (id serial primary key, nome varchar(45) not null, artista varchar(45) not null, album varchar(45) not null, generos_id int not null, FOREIGN KEY (generos_id) REFERENCES generos(id);
+CREATE TABLE musicas (id serial primary key, nome varchar(45) not null, artista varchar(45) not null, album varchar(45) not null, generos_id int not null, FOREIGN KEY (generos_id) REFERENCES generos(id));
 
 INSERT INTO generos (descricao) VALUES ('rock');
 INSERT INTO generos (descricao) VALUES ('jazz');
