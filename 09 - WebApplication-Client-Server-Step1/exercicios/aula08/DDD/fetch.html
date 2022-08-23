@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="PT-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo Fetch</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        h1{
+            color: gray;
+        }
+        #result {
+            margin-bottom: 20px;
+            display: block;
+            width: 150px;
+            height: 30px;
+        }
+        .table, th, td {
+            border: 3px solid white;
+            text-align: center;
+            border-collapse: collapse;
+            color: white;
+        }
+        #ddd{
+            margin: 20px;
+        }
+        .txt{
+            color: white;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Aula 07 - Fetch</h1>
+    <section id="select">
+      <label for="ddd"><small class="txt">Insira o DDD</small></label>
+      <input id="ddd" placeholder="DDD">
+    <button id="result" onclick="APIdata()">Buscar DDD</button>
+    </section>
+    <section id="show_data">
+      <table class="table">
+      </table>
+    </section>
+</body>
+<script src="index.js"></script>
+</html>
