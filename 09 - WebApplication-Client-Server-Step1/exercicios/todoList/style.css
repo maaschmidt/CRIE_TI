@@ -21,6 +21,8 @@ body{
     height: 50px;
 }
 .content{
+    margin: auto;
+    margin-bottom: 10px;
     width: 90%;
     height: 90px;
     background-color: blue;
