@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Juca Bala1",
+    "age": 20,
+    "sex": "male",
+    "email": "juca1@email.com",
+    "id": 1
+  },
+  {
+    "name": "Juca Bala2",
+    "age": 20,
+    "sex": "male",
+    "email": "juca2@email.com",
+    "id": 2
+  },
+  {
+    "name": "Juca Bala3",
+    "age": 20,
+    "sex": "male",
+    "email": "juca3@email.com",
+    "id": 3
+  },
+  {
+    "name": "Juca Bala4",
+    "age": 20,
+    "sex": "male",
+    "email": "juca4@email.com",
+    "id": 4
+  }
+]
