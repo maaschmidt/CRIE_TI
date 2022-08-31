@@ -1,0 +1,22 @@
+{
+  "name": "aula07",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "nodemon index.js -e js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cjs": "^0.0.11",
+    "express": "^4.18.1",
+    "pg": "^8.8.0",
+    "run": "^1.4.0",
+    "sequelize": "^6.21.4"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.2",
+    "nodemon": "^2.0.19"
+  }
+}
