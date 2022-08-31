@@ -1,23 +1,21 @@
 const http = require('http');
+const xml2js = require('xml2js');
 const PORT = 3000;
 const fs = require("fs");
 const dbQuery = require("./dbQuery.js");
 
 getMusic = async ()  => {
   return new Promise(async(resolve, reject) => {
-    let sql = (`SELECT * from musicas`);
+    let sql = (`SELECT musicas.nome,
+                       musicas.artista,
+                       musicas.album,
+                       generos.descricao
+                  FROM musicas
+            INNER JOIN generos ON (generos.id = musicas.generos_id)`);
     let data = await dbQuery(sql, 0);
     resolve(data);
   })
 }
-getGenra = async ()  => {
-  return new Promise(async(resolve, reject) => {
-    let sql = (`SELECT * from generos`);
-    let data = await dbQuery(sql, 0);
-    resolve(data);
-  })
-}
-
 
 const createServer = () => {
   http.createServer((request, response) => {
@@ -31,25 +29,23 @@ const createServer = () => {
       method = request.method;
       const segments = url.split('/').filter((segment) => Boolean(segment));
       let status = 200;
+      let data = await getMusic();
 
-      if(url === '/'){
-        data = [{"error": 'URL inválida, por favor digite uma URL válida!'}];
+      if(url != '/musicas' && url != '/musicasxml'){
+        data = [{"error": 'URL inválida, por favor digite uma URL válida!'},
+      {"URL Válidas": "/musicas ou /musicasxml"}];
+        response.writeHead(status, {'Content-type': 'application/json; charset=utf8'});
+        response.write(JSON.stringify(data));
       }else if (method === 'GET' && url === '/musicas'){
-        let musicas = await getMusic();
-        let generos = await getGenra();
-        await musicas.forEach((musica) => {
-          generos.forEach(genero => {
-            if (musica.generos_id === genero.id){
-              delete musica.generos_id;
-              musica.genero = genero.descricao;
-            }
-          });
-        });
-        data = musicas;
+        response.writeHead(status, {'Content-type': 'application/json; charset=utf8'});
+        response.write(JSON.stringify(data));
+      }else if (method === 'GET' && url === '/musicasxml'){
+        var builder = new xml2js.Builder();
+        var xml = builder.buildObject(data);
+        response.writeHead(status, {'Content-type': 'application/xml; charset=utf8'});
+        response.write(xml);
       }
       
-      response.writeHead(status, {'Content-type': 'application/json; charset=utf8'});
-      response.write(JSON.stringify(data));
       response.end();
     });
   }).listen(PORT, () => { });

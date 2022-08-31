@@ -12,6 +12,8 @@
     "nodemon": "^2.0.19"
   },
   "dependencies": {
-    "pg": "^8.7.3"
+    "fast-xml-parser": "^4.0.9",
+    "pg": "^8.7.3",
+    "xml2js": "^0.4.23"
   }
 }
