@@ -6,7 +6,8 @@ const dbQuery = require("./dbQuery.js");
 
 getMusic = async ()  => {
   return new Promise(async(resolve, reject) => {
-    let sql = (`SELECT musicas.nome,
+    let sql = (`SELECT musicas.id,
+                       musicas.nome,
                        musicas.artista,
                        musicas.album,
                        generos.descricao
@@ -40,8 +41,17 @@ const createServer = () => {
         response.writeHead(status, {'Content-type': 'application/json; charset=utf8'});
         response.write(JSON.stringify(data));
       }else if (method === 'GET' && url === '/musicasxml'){
-        var builder = new xml2js.Builder();
-        var xml = builder.buildObject(data);
+        let dataXML ="";
+        for (const musica of data) {
+        dataXML += `<musica id="${musica.id}">
+            <nome>${musica.nome}</nome>
+            <artista>${musica.artista}</artista>
+            <album>${musica.album}</album>
+            <genero>${musica.descricao.charAt(0).toUpperCase() + musica.descricao.slice(1)}</genero>
+        </musica>`
+        }
+        let xml =`<?xml version="1.0" ?>
+        <musicas>${dataXML}</musicas>`
         response.writeHead(status, {'Content-type': 'application/xml; charset=utf8'});
         response.write(xml);
       }
