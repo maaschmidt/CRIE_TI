@@ -20,6 +20,10 @@ getMusic = async ()  => {
 
 const createServer = () => {
   http.createServer((request, response) => {
+    const params = request.query;
+    console.log(params);
+    // const format = params.format || "json";
+
     let payload = '';
     request.on('data', (buffer) => {
       payload += buffer;
@@ -37,10 +41,10 @@ const createServer = () => {
       {"URL Válidas": "/musicas ou /musicasxml"}];
         response.writeHead(status, {'Content-type': 'application/json; charset=utf8'});
         response.write(JSON.stringify(data));
-      }else if (method === 'GET' && url === '/musicas'){
+      }else if (method === 'GET' && url === '/musicas' || params.format){
         response.writeHead(status, {'Content-type': 'application/json; charset=utf8'});
         response.write(JSON.stringify(data));
-      }else if (method === 'GET' && url === '/musicasxml'){
+      }else if (method === 'GET' && url === '/musicasxml' || params.format == "xml"){
         let dataXML ="";
         for (const musica of data) {
         dataXML += `<musica id="${musica.id}">
