@@ -1,5 +1,4 @@
 const http = require('http');
-const xml2js = require('xml2js');
 const PORT = 3000;
 const fs = require("fs");
 const dbQuery = require("./dbQuery.js");
