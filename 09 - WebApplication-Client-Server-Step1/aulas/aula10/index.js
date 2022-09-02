@@ -20,9 +20,9 @@ app.use("/form", async function(req, res){
   let nome = req.query.nome;
   let email = req.query.email;
   let msg = req.query.msg;
-  let conteudo = {"Nome": nome,
-  "Email": email, 
-  "Mensagem": msg};
+  let conteudo = {"nome": nome,
+  "email": email, 
+  "mensagem": msg};
   
   content.push(conteudo);
   
@@ -30,8 +30,10 @@ app.use("/form", async function(req, res){
     console.log("Arquivo salvo");
   });
 
-  let resultado = Form.build(conteudo);
-  resultado.save();
+  Form.create({"nome": nome,
+  "email": email, 
+  "mensagem": msg});
+  
 
   res.send(`<h1>Olá ${conteudo.nome}.</h1></br><h4>Aguarde retorno da empresa</h4>`)
   // res.render("result", content)

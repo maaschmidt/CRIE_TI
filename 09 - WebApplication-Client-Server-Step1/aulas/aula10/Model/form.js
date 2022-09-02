@@ -4,7 +4,7 @@ const sequelize = require('../sequelize.js');
 class Form extends Model { }
 
 Form.init({
-    name: {
+    nome: {
         type: DataTypes.STRING,
         allowNull: false
     },
