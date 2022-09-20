@@ -1,5 +1,5 @@
 import { Sequelize, DataTypes, Model } from "sequelize";
-import { sequelize } from "../db/db";
+import { sequelize } from "../db/database";
 
 export class Frete extends Model {
   declare id: number;
@@ -28,43 +28,43 @@ Frete.init({
     allowNull: false
   },
   codigo: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false
   },
   valor:{
-    type: DataTypes.DECIMAL(10,2),
+    type: DataTypes.STRING,
     allowNull: false
   },
   prazo_entrega:{
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false
   },
   valor_sem_adicionais:{
-    type: DataTypes.DECIMAL(10,2),
+    type: DataTypes.STRING,
     allowNull: true
   },
   valor_mao_propria:{
-    type: DataTypes.DECIMAL(10,2),
+    type: DataTypes.STRING,
     allowNull: true
   },
   valor_aviso_recebimento:{
-    type: DataTypes.DECIMAL(10,2),
+    type: DataTypes.STRING,
     allowNull: true
   },
   valor_declarado:{
-    type: DataTypes.DECIMAL(10,2),
+    type: DataTypes.STRING,
     allowNull: true
   },
   entrega_domiciliar:{
-    type: DataTypes.CHAR(1),
+    type: DataTypes.STRING,
     allowNull: false
   },
   entrega_sabado:{
-    type: DataTypes.CHAR(1),
+    type: DataTypes.STRING,
     allowNull: false
   },
   erro:{
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false
   }
 },{
