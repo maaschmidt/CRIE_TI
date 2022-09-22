@@ -1,4 +1,4 @@
-import { db } from "./database";
+import { db } from "./databasedb";
 // const client = require("./database.js");
 
 export async function dbQuery(sql: string, params?: string[]) {
