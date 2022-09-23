@@ -1,13 +1,12 @@
 body{
-  margin: 0;
-  /* position: relative; */
+  margin: 0;  
   background-color: rgb(41, 41, 41);
   height: 100vh;
   width: 100vw;  
 }
 
 .container{
-  width: 500px;
+  width: 550px;
   justify-content: space-between;
   position: absolute;
   top: 10%;
@@ -18,6 +17,10 @@ body{
 
 .user_lbl{
   color: white;
+}
+
+.user-select{
+  width: 250px;
 }
 
 .form{
@@ -32,13 +35,14 @@ body{
 
 .table-responsive{
   display: flex;
+  width: 99%;
   margin-top: 100px;
   justify-content: center;
 }
 
 .table{
   border: 1px solid white;
-  width:520px;
+  width:550px;
 }
 
 td {
@@ -52,4 +56,5 @@ tr{
 
 tbody, td, tfoot, th, thead, tr {
   border-right: 1px solid #fff ;
+  text-align: center;
 }

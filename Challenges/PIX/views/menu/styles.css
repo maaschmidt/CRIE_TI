@@ -3,21 +3,22 @@ body{
   position: relative;
   background-color: rgb(41, 41, 41);
   height: 100vh;
-  width: 100vw;  
+  /* width: 100vw;   */
 }
 
 #menu-btn{
   position: absolute;
-  top: 50%;
-  left: 42%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
+  height: 200px;
+  top: 30%;
+  left: 10%;
 }
 
 .btn{
+  width: 200px;
+  height: 100%;
+  text-decoration: none;
+  color: black;
   margin-left: 200px;
-  width: 20rem;
-  height: 20rem;
   border-radius: 20px;
   border: none;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -25,6 +26,12 @@ body{
   background-color: rgb(179, 179, 179);
 }
 
+.btn:focus{
+  text-decoration: none;
+  color: black;
+}
+
 .btn:hover{
   background-color: gray;
+  cursor: pointer;
 }

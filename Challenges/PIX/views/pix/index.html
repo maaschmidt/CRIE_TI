@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <title>PIX</title>
+</head>
+
+<body>
+  <div id="form">
+    <label class="form-item form-label" for="sender_id">Remetente</label>
+    <select id="sender" class="form-item form-input" style="max-width: none" name="sender" onmouseover="loadPage()"></select>
+    <label class="form-item form-label" for="recipient_id">Destinatário</label>
+    <select id="recipient" class="form-item form-input" style="max-width: none" name="recipient"></select>
+    <label class="form-item form-label" for="value">Valor</label>
+    <input id="value" class="form-item form-input" type="number" step="0.01" min="0" placeholder="Valor">
+    <button class="submit-btn" type="submit" onclick="confirmaTransferencia()">Enviar</button>
+  </div>
+</body>
+<script src="./index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</html>
