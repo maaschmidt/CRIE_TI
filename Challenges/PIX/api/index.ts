@@ -1,9 +1,11 @@
 import express from 'express';
 import axios from 'axios';
+import cors from 'cors';
 import * as Transaction from './controllers/TransactionController'
 
 let server: express.Application = express();
 
+server.use(cors());
 server.use(express.json());
 
 server.get("/users", async function (req, res) {
@@ -16,13 +18,14 @@ server.get("/pix", async function (req, res) {
   res.json(await consultaAPI(url));
 });
 
-server.get("/user/:UserId/:type", async function (req, res) {
+server.get("/pix/:UserId/:type", async function (req, res) {
   const url: string = `pix/${req.params.UserId}/${req.params.type}`;
   res.json(await consultaAPI(url));
 });
 
 server.post("/pix", async function (req, res) {
-  res.json(await Transaction.create(req.body));
+  const pix = await Transaction.create(req.body);
+  res.json(pix);
 });
 
 server.listen(3000, function () {
