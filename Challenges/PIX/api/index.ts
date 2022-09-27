@@ -3,32 +3,32 @@ import axios from 'axios';
 import cors from 'cors';
 import * as Transaction from './controllers/TransactionController'
 
-let server: express.Application = express();
+let app: express.Application = express();
 
-server.use(cors());
-server.use(express.json());
+app.use(cors());
+app.use(express.json());
 
-server.get("/users", async function (req, res) {
+app.get("/users", async function (req, res) {
   const url: string = 'users';
   res.json(await consultaAPI(url));
 });
 
-server.get("/pix", async function (req, res) {
+app.get("/pix", async function (req, res) {
   const url: string = 'pix';
   res.json(await consultaAPI(url));
 });
 
-server.get("/pix/:UserId/:type", async function (req, res) {
+app.get("/pix/:UserId/:type", async function (req, res) {
   const url: string = `pix/${req.params.UserId}/${req.params.type}`;
   res.json(await consultaAPI(url));
 });
 
-server.post("/pix", async function (req, res) {
+app.post("/pix", async function (req, res) {
   const pix = await Transaction.create(req.body);
   res.json(pix);
 });
 
-server.listen(3000, function () {
+app.listen(3000, function () {
 });
 
 const consultaAPI = async (url: string) => {

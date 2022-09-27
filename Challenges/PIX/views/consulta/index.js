@@ -3,6 +3,7 @@ const ENDPOINT = 'http://localhost:3000'
 const loadPage = async () => {
   const users = await buscaUsuarios();
   let userHTML = '<option disabled selected>Selecione</option>';
+  userHTML += '<option value="all">Todos</option>'
   for (const user of users) {
     userHTML += '<option value="' + user.id + '">' + user.name + '</option>'
   }
@@ -16,7 +17,6 @@ const buscaUsuarios = async () => {
 
 loadPage();
 
-
 function checkUncheck(caller) {
   var checks = document.querySelectorAll('input[type="checkbox"]');
   checks.forEach(c => c.checked = (c == caller));
@@ -26,9 +26,12 @@ const listPix = async () => {
   try {
     const userId = document.getElementById('user').value;
     const type = validaCheckbox();
+    let url = `/pix/${userId}/${type}`
 
-    if (type){
-      axios.get(`${ENDPOINT}/pix/${userId}/${type}`)
+    if(userId ==='all'){
+      url = 'pix'
+    } if (type){
+      axios.get(`${ENDPOINT}${url}`)
       .then((response) => {
           if (response.status === 200) {
             const data = response.data;
@@ -69,12 +72,11 @@ const validaCheckbox = () => {
       checkSelected = true;
     }
   }
-
-  if (!checkSelected) {
-    alert('Selecione pelo menos um tipo!');
-  }
-  else {
-    return (check);
-  }
+  // if (!checkSelected) {
+  //   alert('Selecione pelo menos um tipo!');
+  // }
+  // else {
+  //   return (check);
+  // }
 }
 
