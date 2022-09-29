@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="container"></div>
+  <script>
+    Highcharts.chart('container',
+    {
+      title:{
+        text: 'CRIE_TI Gráficos'
+      },
+      series: [{
+        type: 'areaspline',
+        name: 'Valores',
+        data: [1, 32, 42, 60, 15, 19, 42, 60, 15, 32, 42, 60, 70, 32, 42, 60, 15, 32, 42, 60, 15, 32, 42, 60, 15]
+      }]
+    });
+  </script>
+  line, spline, area, areaspline, column, bar, pie, scatter
+</body>
+</html>
