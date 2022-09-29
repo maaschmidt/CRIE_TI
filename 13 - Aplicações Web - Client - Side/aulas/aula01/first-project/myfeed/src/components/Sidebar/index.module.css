@@ -1,0 +1,30 @@
+.sidebar{
+  width: 100%;
+  background-color: var(--white);
+  border: 1px solid var(--green-100);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cover{
+  width: 100%;
+  height: 11.12rem;
+  object-fit: cover;
+}
+
+.profile{
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-left: 3rem;
+  margin-bottom: 1.25rem;
+  margin-top: -3rem;
+}
+
+.avatar{
+  box-sizing: initial;
+  width: 12rem;
+  border-radius: 100px;
+  border: 1px solid var(--gray-800);
+  outline: 2px solid var(--green-100);
+}
