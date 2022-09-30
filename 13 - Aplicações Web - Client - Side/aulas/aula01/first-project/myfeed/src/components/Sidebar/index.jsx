@@ -9,7 +9,7 @@ export function Sidebar() {
         
         <div className={ styles.description }>
           <strong>Marcel Schmidt</strong>
-          <span>Full Stack Developer | JS | TS | Java | SQL</span>
+          <span>Full Stack Developer | caf.io | JavaScript | TypeScript | Java | SQL</span>
         </div>
       </div>
     </aside>

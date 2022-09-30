@@ -16,6 +16,7 @@
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  align-items: flex-end;
   margin-left: 3rem;
   margin-bottom: 1.25rem;
   margin-top: -3rem;
@@ -23,8 +24,26 @@
 
 .avatar{
   box-sizing: initial;
-  width: 12rem;
-  border-radius: 100px;
-  border: 1px solid var(--gray-800);
+  width: 8.5rem;
+  height: 8.5rem;
+  border-radius: 8px;
+  border: 11px solid var(--gray-800);
+  border-collapse: collapse;
   outline: 2px solid var(--green-100);
+}
+
+.description{
+  display: flex;
+  flex-direction: column;
+  color: var(--gray-900);
+  gap: 0.5rem;
+}
+
+.description strong{
+  font-size: 1.5rem;
+  line-height: 1.6;
+}
+
+.description span{
+  color: var(--gray-500);
 }
