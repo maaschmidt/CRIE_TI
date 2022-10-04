@@ -18,6 +18,12 @@ async function auth() {
     const res = await fetch(url, options);
     const result = await res.json()
 
+    if (result){
+        window.location.reload();
+    } else {
+        alert("Falha no Login")
+    }
+
     console.log(result);
 }
 
@@ -30,7 +36,18 @@ async function verify(){
 
     if(result.loggedIn != "undefined"){
         document.body.innerHTML = `Bem Vindo ${result.userName}`
-        
+        document.body.innerHTML += `<br />`
+        document.body.innerHTML += `<a href='/login.html' onclick='out()'>Sair</a>`
+    }
+}
+
+async function out(){
+    if(confirm("Realmente deseja sair?")){
+        let url = `${ENDPOINT}out`
+        const res = await fetch(url, options);
+        await res.json();
+
+        window.location.reload();
     }
 }
 

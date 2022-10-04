@@ -50,6 +50,12 @@ app.get('/verify', async function (req: Request, res: Response) {
     res.json(result);
 });
 
+app.get('/out', function(req: Request, res: Response){
+    req.session.destroy(function(){
+        console.log("Sessão encerrada")
+    })
+})
+
 app.listen(3000, function(){
     console.log("Back online!");
 });
