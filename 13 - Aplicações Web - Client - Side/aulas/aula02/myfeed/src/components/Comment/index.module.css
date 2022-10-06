@@ -1,0 +1,61 @@
+.comment_content{
+  margin: 2.9rem 2.5rem auto 2.5rem;
+}
+
+.comment_content > span{
+  color: var(--gray-400);
+}
+
+.comment{
+  display: flex;
+}
+
+.comment_text{
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--gray-100);
+  margin-left: 1rem;
+  border-radius: 9px;
+  width: 100%;
+  height: 9.25rem;
+  padding: 1rem;
+}
+
+.content p{
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.delete{
+  fill: var(--gray-500);
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.delete:hover{
+  fill: var(--gray-300);
+}
+
+.thumb{
+  
+  fill: var(--gray-400);
+  margin-right: 10px;
+}
+
+.thumb_btn{
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 5.3rem;
+  margin-top: 0.5rem;
+}
+
+.trash_btn{
+  background: none;
+  cursor: pointer;
+  border: none;
+  height: 2rem;
+}
