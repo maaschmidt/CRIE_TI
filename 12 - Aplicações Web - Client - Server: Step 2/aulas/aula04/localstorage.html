@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  console.log('rodou!');
+  
+  /*localStorage.setItem('nome', 'Marcel');
+  let nome = localStorage.getItem('nome');
+  let outroNome = localStorage.nome;
+  console.log(nome);
+  console.log(outroNome);
+
+  let chaveExiste = localStorage.key('nome') == 'nome';
+  console.log('Chave existe: ' + chaveExiste);
+  localStorage.removeItem('nome');*/
+
+  let juca = {nome: "Juca Bala", idade: 23};
+  localStorage.setItem('Juca', JSON.stringify(juca));
+  let jucaBala = JSON.parse(localStorage.getItem('Juca'));
+  console.log(jucaBala);
+</script>
+</html>
