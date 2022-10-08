@@ -28,11 +28,11 @@ const listPix = async () => {
     const type = validaCheckbox();
     let url = `/pix/${userId}/${type}`
 
-    if(userId ==='all'){
+    if (userId === 'all') {
       url = 'pix'
-    } if (type){
+    } if (type) {
       axios.get(`${ENDPOINT}${url}`)
-      .then((response) => {
+        .then((response) => {
           if (response.status === 200) {
             const data = response.data;
             var trHTML = '';
@@ -58,9 +58,9 @@ const listPix = async () => {
           }
         })
     }
-    }catch(error){
-
-    }
+  } catch (error) {
+    console.log('erro listPix')
+  }
 };
 
 const validaCheckbox = () => {
@@ -72,11 +72,10 @@ const validaCheckbox = () => {
       checkSelected = true;
     }
   }
-  // if (!checkSelected) {
-  //   alert('Selecione pelo menos um tipo!');
-  // }
-  // else {
-  //   return (check);
-  // }
+  if (!checkSelected) {
+    alert('Selecione pelo menos um tipo!');
+  }
+  else {
+    return (check);
+  }
 }
-
