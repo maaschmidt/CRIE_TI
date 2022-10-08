@@ -1,0 +1,30 @@
+.header{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+.container{
+  width: 35rem;
+  justify-content: space-between;
+}
+
+.user_lbl{
+  color: var(--white);
+}
+
+.user-id{
+  width: 250px;
+}
+
+.form{
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
+.summit_btn{
+  width: 7em;
+}

@@ -1,0 +1,24 @@
+.tableResponsive{
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.table{
+  border: 1px solid white;
+  width:35rem;
+}
+
+td {
+  color: #fff;
+  line-height: 3rem;
+}
+
+tr{
+  color: #fff;
+}
+
+tbody, td, tfoot, th, thead, tr {
+  border-right: 1px solid #fff ;
+  text-align: center;
+}

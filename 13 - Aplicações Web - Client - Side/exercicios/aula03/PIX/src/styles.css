@@ -1,0 +1,60 @@
+body{
+  margin: 0;  
+  background-color: rgb(41, 41, 41);
+  height: 100vh;
+  width: 100vw;  
+}
+
+.container{
+  width: 550px;
+  justify-content: space-between;
+  top: 10%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.user_lbl{
+  color: white;
+}
+
+.user-select{
+  width: 250px;
+}
+
+.form{
+  width: 700px;
+  /* display: flex; */
+  justify-content: space-between;
+  color: white;
+}
+
+.summit_btn{
+  width: 7em;
+}
+
+.table-responsive{
+  display: flex;
+  width: 99%;
+  margin-top: 100px;
+  justify-content: center;
+}
+
+.table{
+  border: 1px solid white;
+  width:550px;
+}
+
+td {
+  color: #fff;
+  line-height: 3rem;
+}
+
+tr{
+  color: #fff;
+}
+
+tbody, td, tfoot, th, thead, tr {
+  border-right: 1px solid #fff ;
+  text-align: center;
+}
