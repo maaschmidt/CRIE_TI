@@ -1,7 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
-import { db } from '../db';
+import db from '../db';
 
-export class State extends Model { };
+class State extends Model { };
 
 State.init({
   id: {
@@ -24,3 +24,5 @@ State.init({
   tableName: 'states',
   modelName: 'State'
 });
+
+export default State;

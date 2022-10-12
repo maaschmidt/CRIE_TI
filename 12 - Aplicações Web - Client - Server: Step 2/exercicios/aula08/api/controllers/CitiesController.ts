@@ -1,90 +1,119 @@
-import express, { Express, NextFunction, Request, Response } from 'express';
 import { Op } from 'sequelize';
-import { City } from '../models/City';
-import { State } from '../models/State'
+import { NextFunction, Request, Response } from 'express';
+import CityModel from '../models/City';
+import StateModel from '../models/State';
+import City from '../models/City';
 
-export class CitiesController {
-  
-  static index = async (req: Request, res: Response, next: NextFunction) => {
+class CitiesController {
 
-    const cities= await City.findAll({
-      include: [{
-        model: State,
-        required: false,
-        attributes: ['name', 'province']
-      }]
-    });
+  index = async (req: Request, res: Response, next: NextFunction) => {
+    const params = req.query;
+    const limit: number = params.page ? parseInt(params.limit as string) : 100;
+    const page: number = params.page ? parseInt(params.page as string) : 1;
+    const offset: number = (page - 1) * limit;
+    const sort: string = params.sort ? params.sort as string : 'id';
+    const order: string = params.order ? params.order as string : 'ASC';
+    const where: any = {};
+
+    if (params.StateId) {
+      where.StateId =
+      {
+        [Op.eq]: params.StateId
+      };
+    }
+
+    const cities = await CityModel.findAll(
+      {
+        where: where,
+        include: [{
+          model: StateModel,
+          required: false,
+          attributes: ['name', 'province']
+        }]
+      });
 
     res.json(cities);
   }
 
-  static create = async (req: Request, res: Response, next: NextFunction) => {
+  create = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const data = await this._validateData(req.body);
-      const city = await City.create(data);
+      const city = await CityModel.build(req.body);
+      const data = await this._validateData(city);
+      city.save();
       res.json(city);
-    } catch (error) {
-      res.status(400).json({ error: Error });
+    }
+    catch (error: any) {
+      res.status(400).json({ error: error.message });
     }
   }
 
-  static show = async (req: Request, res: Response, next: NextFunction) => {
-    const state = await City.findByPk(req.params.cityId);
+  show = async (req: Request, res: Response, next: any) => {
+    const state = await CityModel.findByPk(req.params.cityId);
     res.json(state);
   }
 
-  static update = async (req: Request, res: Response, next: NextFunction) => {
+  update = async (req: Request, res: Response, next: any) => {
     try {
       const id = req.params.cityId;
-      const data = await this._validateData(req.body);
-      await City.update(data, {
-        where: {
-          id: id
-        }
-      });
-      res.json(await City.findByPk(id));
-    } catch (error) {
-      res.status(400).json({ error: Error });
+      const city = await CityModel.build(req.body);
+      const data = await this._validateData(city);
+      //city.save();
+      await CityModel.update(data,
+        {
+          where: {
+            id: id
+          }
+        });
+
+      res.json(city);
+    }
+    catch (error: any) {
+      res.status(400).json({ error: error.message });
     }
   }
 
-  static delete = async (req: Request, res: Response, next: NextFunction) => {
-    await City.destroy({
-      where: {
-        id: req.params.cityId
-      }
-    });
+  delete = async (req: Request, res: Response, next: any) => {
+    await CityModel.destroy(
+      {
+        where: {
+          id: req.params.cityId
+        }
+      });
     res.json({});
   }
 
-  static _validateData = async (data : any) => {
-    const attributes = ['name', 'StateId'];
-    const city: any = {};
-    for (const attribute of attributes) {
-      if (!data[attribute]) {
-        throw new Error(`The attribute "${attribute}" is required.`);
-      }
-      city[attribute] = data[attribute];
+  _validateData = async (data: CityModel) => {
+    if (!data.name) {
+      throw new Error(`Name is required.`);
     }
 
-    if (await this._checkIfCityAndStateExists(city.name, city.StateId)) {
-      throw new Error(`The city in the State "${city.StateId}" already exists.`);
+    if (!data.StateId) {
+      throw new Error(`StateId is required.`);
     }
 
-    return city;
+    if (await this._checkIfCityAndStateExists(data.name, data.StateId)) 
+    {
+      throw new Error(`The city in the State "${data.StateId}" already exists.`);
+    }
+
+    return data;
   }
 
-  static _checkIfCityAndStateExists = async (name: string, state: number) => {
-    const cities = await City.count({
-      where: {
-        [Op.and]: [
-          { StateId: state },
-          { name: name }
-        ]
-      }
-    });
+  _checkIfCityAndStateExists = async (name: string, state: number) => {
+    const cities = await CityModel.count(
+      {
+        where:
+        {
+          [Op.and]: [
+            { StateId: state },
+            { name: name }
+          ]
+        }
+      });
 
     return cities > 0;
   }
 
 }
+
+export default new CitiesController()

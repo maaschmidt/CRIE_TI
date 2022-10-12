@@ -1,11 +1,10 @@
 const api = 'http://localhost:3000/';
 
-async function auth()
-{
+async function auth() {
     let formData = getFormData();
     let authorization = formData.username + ":" + formData.password;
     let base64 = btoa(authorization);
-   
+
     let headers = new Headers({
         authorization: "Basic " + base64
     });
@@ -16,17 +15,15 @@ async function auth()
         cache: "no-store"
     }
 
-    let url = api+'auth';
-    const response = await fetch(url,options);
+    let url = api + 'auth';
+    const response = await fetch(url, options);
     const usuario = await response.json();
     console.log(usuario);
 
-    if ( usuario == null )
-    {
+    if (usuario == null) {
         alert("Não rolou filho! Tente novamente mais tarde!");
     }
-    else
-    {
+    else {
         setLogado(usuario);
         alert("Login efetuado com sucesso!")
         window.location.reload();
@@ -35,30 +32,26 @@ async function auth()
     console.log(usuario);
 }
 
-function setLogado(usuario)
-{
-    usuario.loggedAt = new Date();  
+function setLogado(usuario) {
+    usuario.loggedAt = new Date();
     localStorage.setItem('logado', JSON.stringify(usuario));
     return true;
 }
 
-function getLogado()
-{
+function getLogado() {
     return JSON.parse(localStorage.getItem('logado'))
 }
 
-async function verify()
-{
+async function verify() {
     let logado = getLogado();
 
-    if (logado == null)
-    {
+    if (logado == null) {
         return;
     }
-    
+
     let authorization = logado.email + ":" + logado.password;
     let base64 = btoa(authorization);
-   
+
     let headers = new Headers({
         authorization: "Basic " + base64
     });
@@ -69,14 +62,13 @@ async function verify()
         cache: "no-store"
     }
 
-    let url = api+'verify';
-    const response = await fetch(url,options);
+    let url = api + 'verify';
+    const response = await fetch(url, options);
     const usuario = await response.json();
 
     console.log(usuario);
-    
-    if ( usuario )
-    {
+
+    if (usuario) {
         window.location = 'users.html'
         //document.body.innerHTML = "Bem vindo, " + logado.name;
         //document.body.innerHTML +='<br/>';
@@ -85,14 +77,12 @@ async function verify()
     }
 }
 
-function out()
-{
+function out() {
     setLogado(null);
     //localStorage.removeItem('logado');
 }
 
-function getFormData()
-{
+function getFormData() {
     let form = document.querySelector('form');
     let formData = new FormData(form);
     let dados = Object.fromEntries(formData)

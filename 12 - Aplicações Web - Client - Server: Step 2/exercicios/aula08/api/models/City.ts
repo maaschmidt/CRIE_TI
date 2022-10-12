@@ -1,8 +1,11 @@
 import { DataTypes, Model } from 'sequelize';
-import { db } from '../db';
-import { State } from './State';
+import db from '../db';
+import State from './State';
 
-export class City extends Model { };
+class City extends Model {
+  declare name: string;
+  declare StateId: number;
+};
 
 City.init({
   id: {
@@ -14,14 +17,14 @@ City.init({
   name: {
     type: DataTypes.STRING,
     allowNull: false
-  }//,
-  // state_id: {
-  //   type: DataTypes.INTEGER,
-  //   references: {
-  //     model: State,
-  //     key: 'id'
-  //   }
-  // }
+  },
+  StateId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: State,
+      key: 'id'
+    }
+  }
 }, {
   sequelize: db,
   tableName: 'cities',
@@ -32,4 +35,4 @@ City.init({
 State.hasMany(City);
 City.belongsTo(State);
 
-module.exports = City;
+export default City;

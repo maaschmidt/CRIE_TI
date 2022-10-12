@@ -1,7 +1,7 @@
 import express, { Express, NextFunction, Request, Response } from 'express';
 const router = express.Router();
 import { User } from '../models/User';
-import { UsersController } from '../controllers/UsersController';
+import UsersController from '../controllers/UsersController';
 
 const validateUserId = async (req: Request, res: Response, next: NextFunction) => {
   const user = await User.findByPk(req.params.userId);

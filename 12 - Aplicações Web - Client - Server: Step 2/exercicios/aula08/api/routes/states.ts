@@ -1,7 +1,7 @@
 import express, { Express, NextFunction, Request, Response } from 'express';
 const router = express.Router();
-import { State } from '../models/State';
-import { StatesController } from '../controllers/StatesController';
+import State from '../models/State';
+import StatesController from '../controllers/StatesController';
 
 const validateStateId = async (req: Request, res: Response, next: NextFunction) => {
     const state = await State.findByPk(req.params.stateId);

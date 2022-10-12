@@ -1,23 +1,20 @@
 const api = 'http://localhost:3000/';
 
-function getLogado()
-{
+function getLogado() {
     return JSON.parse(localStorage.getItem('logado'))
 }
 
-async function verify()
-{
+async function verify() {
     let logado = getLogado();
 
-    if (logado == null)
-    {
+    if (logado == null) {
         window.location = 'login.html'
         return;
     }
-    
+
     let authorization = logado.email + ":" + logado.password;
     let base64 = btoa(authorization);
-   
+
     let headers = new Headers({
         authorization: "Basic " + base64
     });
@@ -28,18 +25,16 @@ async function verify()
         cache: "no-store"
     }
 
-    let url = api+'verify';
-    const response = await fetch(url,options);
+    let url = api + 'verify';
+    const response = await fetch(url, options);
     const usuario = await response.json();
 
     console.log(usuario);
-    
-    if ( !usuario )
-    {
-        window.location = 'login.html'
+
+    if (!usuario) {
+        // window.location = 'login.html'
     }
-    else
-    {
+    else {
         let loggeAt = new Date(usuario.loggedAt);
         let dataAtual = new Date();
 
@@ -48,8 +43,7 @@ async function verify()
     }
 }
 
-function out()
-{
+function out() {
     localStorage.removeItem('logado');
 }
 

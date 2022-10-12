@@ -1,7 +1,7 @@
 import express, { Express, NextFunction, Request, Response } from 'express';
 const router = express.Router()
-import { City } from '../models/City';
-import { CitiesController } from '../controllers/CitiesController';
+import City from '../models/City';
+import CitiesController from '../controllers/CitiesController';
 
 const validateCityId = async (req: Request, res: Response, next: NextFunction) => {
     const city = await City.findByPk(req.params.cityId);

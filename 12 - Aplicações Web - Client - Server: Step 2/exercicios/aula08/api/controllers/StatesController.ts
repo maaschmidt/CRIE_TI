@@ -1,14 +1,14 @@
 import express, { Express, NextFunction, Request, Response } from 'express';
-import { State } from '../models/State';
+import State from '../models/State';
 
-export class StatesController {
+class StatesController {
 
-  static index = async (req: Request, res: Response, next: NextFunction) => {
+  index = async (req: Request, res: Response, next: NextFunction) => {
     const states = await State.findAll({});
     res.json(states);
   }
 
-  static create = async (req: Request, res: Response, next: NextFunction) => {
+  create = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const data = await this._validateData(req.body);
       const state = await State.create(data);
@@ -18,12 +18,12 @@ export class StatesController {
     }
   }
 
-  static show = async (req: Request, res: Response, next: NextFunction) => {
+  show = async (req: Request, res: Response, next: NextFunction) => {
     const state = await State.findByPk(req.params.stateId);
     res.json(state);
   }
 
-  static update = async (req: Request, res: Response, next: NextFunction) => {
+  update = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const id: any = req.params.stateId;
       const data: any = await this._validateData(req.body);
@@ -38,7 +38,7 @@ export class StatesController {
     }
   }
 
-  static delete = async (req: Request, res: Response, next: NextFunction) => {
+  delete = async (req: Request, res: Response, next: NextFunction) => {
     await State.destroy({
       where: {
         id: req.params.stateId
@@ -47,7 +47,7 @@ export class StatesController {
     res.json({});
   }
 
-  static _validateData = async (data: any) => {
+  _validateData = async (data: any) => {
     const attributes = ['name', 'province'];
     const state: any = {};
     for (const attribute of attributes) {
@@ -61,3 +61,5 @@ export class StatesController {
   }
 
 }
+
+export default new StatesController();

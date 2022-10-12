@@ -27,12 +27,14 @@ const userCreate = () => {
     const age = document.getElementById("age").value;
     const sex = document.getElementById("sex").value;
     const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
     axios.post(`${ENDPOINT}/users`, {
         name: name,
         age: age,
         sex: sex,
         email: email,
+        password: password,
     })
         .then((response) => {
             Swal.fire(`User ${response.data.name} created`);
@@ -55,12 +57,14 @@ const userEdit = () => {
     const age = document.getElementById("age").value;
     const sex = document.getElementById("sex").value;
     const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
     axios.put(`${ENDPOINT}/users/` + id, {
         name: name,
         age: age,
         sex: sex,
         email: email,
+        password: password,
     })
         .then((response) => {
             Swal.fire(`User ${response.data.name} updated`);
@@ -74,6 +78,9 @@ const userEdit = () => {
 }
 
 const userDelete = async (id) => {
+    if (!confirm("Realmente deseja excluir?")){
+        return;
+    }
     const user = await getUser(id);
     const data = user.data;
     axios.delete(`${ENDPOINT}/users/` + id)
@@ -94,7 +101,8 @@ const showUserCreateBox = () => {
             '<input id="name" class="swal2-input" placeholder="Name">' +
             '<input id="age" class="swal2-input" placeholder="Age">' +
             '<input id="sex" class="swal2-input" placeholder="Sex">' +
-            '<input id="email" class="swal2-input" placeholder="Email">',
+            '<input id="email" class="swal2-input" placeholder="Email">'+
+            '<input id="password" type="password" class="swal2-input" placeholder="Password">',
         focusConfirm: false,
         showCancelButton: true,
         preConfirm: () => {
@@ -113,7 +121,8 @@ const showUserEditBox = async (id) => {
             '<input id="name" class="swal2-input" placeholder="Name" value="' + data.name + '">' +
             '<input id="age" class="swal2-input" placeholder="Age" value="' + data.age + '">' +
             '<input id="sex" class="swal2-input" placeholder="Sex" value="' + data.sex + '">' +
-            '<input id="email" class="swal2-input" placeholder="Email" value="' + data.email + '">',
+            '<input id="email" class="swal2-input" placeholder="Email" value="' + data.email + '">'+
+            '<input id="password" type="password" class="swal2-input" placeholder="Password">',
         focusConfirm: false,
         showCancelButton: true,
         preConfirm: () => {
