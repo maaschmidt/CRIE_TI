@@ -1,0 +1,9 @@
+.history/
+.vscode
+.env
+node_modules
+database.*
+sequelize.js
+sequelize.ts
+databasedb.ts
+atualizadb.ts
