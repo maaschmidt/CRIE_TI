@@ -3,8 +3,40 @@ import { Link } from "react-router-dom";
 import { Header } from "../components/Header";
 import { Input } from "../components/Input";
 import { Sidebar } from "../components/Sidebar";
+import * as zod from 'zod';
+import { TypeOf } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const newUserValidationSchema = zod.object({
+  id: zod.number().optional(),
+  name: zod.string().min(3, "Informe um nome válido"),
+  email: zod.string().email("Informe email válido"),
+  password: zod.string().min(5, 'miímo 5 caracteres'),
+  password_confirmation: zod.string().min(5, 'miímo 5 caracteres'),
+  age: zod.number(),
+  sex: zod.string()
+})
+  .refine((data) => data.password === data.password_confirmation, {
+    message: "Senhas não conferem",
+    path: ["password_confirmation"]
+  });
+
+export type User = zod.infer<typeof newUserValidationSchema>;
 
 export function UserCreate() {
+  const methods = useForm<User>({
+    resolver: zodResolver(newUserValidationSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      password: "",
+      password_confirmation: "",
+      age: undefined,
+      sex: ""
+    }
+  })
+
   return (
     <Flex direction='column' h='10vh'>
       <Header />
@@ -15,36 +47,7 @@ export function UserCreate() {
             Criar usuário
           </Heading>
           <Divider my='6' borderColor='gray.700' />
-          <VStack spacing='8'>
-            <Grid
-              w='100%'
-              templateColumns={['repeat(3, 1fr)', 'repeat(3, 1fr)', 'repeat(10, 1fr)']}
-              gap='2'
-            >
-              <GridItem colSpan={3}>
-                <Input name="name" label="Nome Completo" />
-              </GridItem>
-              <GridItem colSpan={4}>
-                <Input name="email" label="Email" />
-              </GridItem>
-              <GridItem colSpan={2}>
-                <Input name="gender" label="Genero" />
-              </GridItem>
-              <GridItem colSpan={1}>
-                <Input name="age" label="Idade" />
-              </GridItem>
-            </Grid>
-            <SimpleGrid minChildWidth='240px' spacing='2' w='100%' >
-              <Input name="password" label="Senha" type="password" />
-              <Input name="password_confirmation" label="Confirmação de Senha" type="password" />
-            </SimpleGrid>
-          </VStack>
-          <Flex mt='8' justify='flex-end' gap='4'>
-            <Link to='/users'>
-            <Button colorScheme='whiteAlpha'>Cancelar</Button>
-            </Link>
-            <Button colorScheme='purple'>Salvar</Button>
-          </Flex>
+          
         </Box>
       </Flex>
     </Flex>

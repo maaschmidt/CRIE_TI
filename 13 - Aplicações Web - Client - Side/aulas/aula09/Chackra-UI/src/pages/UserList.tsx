@@ -1,18 +1,37 @@
-import { Box, Button, Checkbox, Flex, Heading, HStack, Icon, IconButton, Table, Tbody, Td, Text, Th, Thead, theme, Tr, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Button, Checkbox, Flex, Heading, HStack, Icon, IconButton, Tbody, Td, Text, Th, Thead, theme, Tr, useBreakpointValue } from "@chakra-ui/react";
 import { Header } from "../components/Header";
 import { Sidebar } from "../components/Sidebar";
 import { PencilSimple, Plus, Trash } from 'phosphor-react';
 import { Pagination } from "../components/Pagination";
 import { Link } from "react-router-dom";
+import { Table } from '../components/Table'
 
 import useUserEditModal from "../components/Modais/UserEditModal";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+interface User {
+  name: string;
+  email: string;
+  age: number;
+  sex: string;
+}
 
 export function UserList() {
   const { onOpen, UserEditModal } = useUserEditModal()
+  const [users, setUsers] = useState<User[]>([]);
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
   })
+
+  useEffect(() => {
+    axios.get<User[]>("http://localhost:3000/users").then((response) => {
+      setUsers(response.data);
+    });
+  }, []);
+
+
   return (
     <Flex direction='column' h='10vh'>
       <Header />
@@ -53,74 +72,67 @@ export function UserList() {
               </Button>
             </Link>
           </Flex>
-          <Table>
-            <Thead>
-              <Tr>
-                <Th px={['4', '4', '6']} color='gray.300' w='8'>
-                  <Checkbox colorScheme='purple' />
-                </Th>
-                <Th>Usuário</Th>
-                <Th>Data de Criação</Th>
-                <Th>Ação</Th>
-              </Tr>
-            </Thead>
+
+          <Table header={["Usuário", "Idade", "Genero", ""]}>
             <Tbody>
-              <Tr>
-                <Td px={['4', '4', '6']}>
-                  <Checkbox colorScheme='purple' />
-                </Td>
-                <Td>
-                  <Box>
-                    <Text fontWeight='bold'>Marcel Schmidt</Text>
-                    <Text fontSize='sm' color='gray.400'>
-                      marcel.schmidt@universo.univates.br
-                    </Text>
-                  </Box>
-                </Td>
-                <Td>27 de outubro de 2022</Td>
-                <Td>
-                  {isWideVersion ? (
-                    <HStack>
-                      <Button
-                        as='a'
-                        size='sm'
-                        fontSize='sm'
-                        colorScheme='blue'
-                        leftIcon={<Icon as={PencilSimple} fontSize={16} />}
-                        onClick={onOpen}
-                      >
-                        Editar
-                      </Button>
-                      <Button
-                        size='sm'
-                        fontSize='sm'
-                        colorScheme='red'
-                        leftIcon={<Icon as={Trash} fontSize={16} />}
-                      >
-                        Excluir
-                      </Button>
-                    </HStack>
-                  ) : (
-                    <HStack>
-                      <IconButton
-                        aria-label="Editar"
-                        icon={<Icon as={PencilSimple} fontSize={16} />}
-                        fontSize={24}
-                        colorScheme='blue'
-                        mr='2'
-                        onClick={onOpen}
-                      />
-                      <IconButton
-                        aria-label="Excluir"
-                        icon={<Icon as={Trash} fontSize={16} />}
-                        fontSize={24}
-                        colorScheme='red'
-                        mr='2'
-                      />
-                    </HStack>
-                  )}
-                </Td>
-              </Tr>
+              {users.map((user) => {
+                return (
+                  <><Tr>
+                    <Td px={['4', '4', '6']}>
+                      <Checkbox colorScheme='purple' />
+                    </Td>
+                    <Td>
+                      <Box>
+                        <Text fontWeight='bold'>{user.name}</Text>
+                        <Text fontSize='sm' color='gray.400'>
+                          {user.email}
+                        </Text>
+                      </Box>
+                    </Td>
+                    <Td>{user.age}</Td>
+                    <Td>{user.sex}</Td>
+                  </Tr><Td>
+                      {isWideVersion ? (
+                        <HStack>
+                          <Button
+                            as='a'
+                            size='sm'
+                            fontSize='sm'
+                            colorScheme='blue'
+                            leftIcon={<Icon as={PencilSimple} fontSize={16} />}
+                            onClick={onOpen}
+                          >
+                            Editar
+                          </Button>
+                          <Button
+                            size='sm'
+                            fontSize='sm'
+                            colorScheme='red'
+                            leftIcon={<Icon as={Trash} fontSize={16} />}
+                          >
+                            Excluir
+                          </Button>
+                        </HStack>
+                      ) : (
+                        <HStack>
+                          <IconButton
+                            aria-label="Editar"
+                            icon={<Icon as={PencilSimple} fontSize={16} />}
+                            fontSize={24}
+                            colorScheme='blue'
+                            mr='2'
+                            onClick={onOpen} />
+                          <IconButton
+                            aria-label="Excluir"
+                            icon={<Icon as={Trash} fontSize={16} />}
+                            fontSize={24}
+                            colorScheme='red'
+                            mr='2' />
+                        </HStack>
+                      )}
+                    </Td></>
+                )
+              })}
             </Tbody>
           </Table>
           <Pagination />
